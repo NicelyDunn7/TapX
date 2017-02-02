@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home Page</title>
+		<title>Business Home Page</title>
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,18 +24,18 @@
 		<div class="container">
 			<div class="col-xs-12">
 				<div id="barName">
-					<h1>Banner Text Here</h1>
+					<h1>Welcome Bar Name</h1>
 				</div>
 			</div>
 			<div class="col-xs-12">
 				<div class="row">
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">State<span class="caret"></span></button>
+					<button class="btn" type="button">Modify Drinks</button>
 				</div>
 				<div class="row">
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">City<span class="caret"></span></button>
+					<button class="btn" type="button">Modify Info</button>
 				</div>
 				<div class="row">
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">Bar<span class="caret"></span></button>
+					<button class="btn" type="button">Modify Login</button>
 				</div>
 			</div>
 		</div>
