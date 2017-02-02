@@ -40,8 +40,8 @@ CREATE TABLE 'item_list' (
 	'business_name' CHAR(35) FOREIGN KEY REFERENCES businesses(business_name), --why is this here? it was in the ERD, but I don't think it belongs
 	'Bud Light (Draft 16oz)' DECIMAL(1,2),
 	'Bud Light (Bottle)' DECIMAL(1,2),
-	'Budwiser (Draft 16oz)' DECIMAL(1,2),
-	'Budwiser (Bottle)' DECIMAL(1,2),
+	'Budweiser (Draft 16oz)' DECIMAL(1,2),
+	'Budweiser (Bottle)' DECIMAL(1,2),
 	'Jack and Coke (Single Well)' DECIMAL(1,2),
 	'Jack and Coke (Double Well)' DECIMAL(1,2),
 	'Jack and Coke (Triple Well)' DECIMAL(1,2)
