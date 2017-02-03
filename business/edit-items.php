@@ -29,33 +29,35 @@
 			</div>
 			<div class="col-xs-12">
 
-                <table>
-                    <?php
-                        include '../dbcreds.php';
-                    //Fetch all from item table for establishment
-                        $row_query = "SELECT * FROM item_list WHERE business_id='1'";
-                        $row_result = mysqli_query($conn, $row_query);
-                        $row = mysqli_fetch_assoc($row_result);
-                    //Fetch columns from item table
-                        $column_query = "SHOW COLUMNS FROM item_list";
-                    //For each column, print column title and corresponding price
-                        $result = mysqli_query($conn, $column_query);
-                        while($column = mysqli_fetch_array($result)){
-                            echo '<tr>';
-                            echo '<td>';
-                            echo $column['Field'];
-                            echo '</td>';
-                            echo '<td>';
-                            echo $row[$column['Field']];
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-                    ?>
-                </table>
+                <div>
+                    <form role='form' action='save-changes.php' method='POST'>
+                        <?php
+                            include '../dbcreds.php';
+                        //Fetch all from item table for establishment
+                            $row_query = "SELECT * FROM item_list WHERE business_id='1'";
+                            $row_result = mysqli_query($conn, $row_query);
+                            $row = mysqli_fetch_assoc($row_result);
+                        //Fetch columns from item table
+                            $column_query = "SHOW COLUMNS FROM item_list";
+                        //For each column, print column title and corresponding price
+                            $result = mysqli_query($conn, $column_query);
+                            while($column = mysqli_fetch_array($result)){
+                                if($column['Field'] != 'business_id'){
+                                    echo "<div class='form-group'>";
+                                    echo "<label class='inputdefault'>";
+                                    echo $column['Field'];
+                                    echo "</label>";
+                                    echo "<input class='form-control text-input' type='number' name='".$column['Field']."' value='".$row[$column['Field']]."'>";
+                                    echo "</div>";
+                                }
+                            }
+                        ?>
+                        <input class='btn btn-info btn-lg' type='submit' name='save' value='Save'>
+                        <a class='btn btn-success btn-lg' href='business-home.php'>Cancel</a>
+                    </form>
+                </div>
 
 				<div class="row">
-					<button class="btn" type="button">Save</button>
-                    <button class="btn" type="button">Cancel</button>
 				</div>
 			</div>
 		</div>
