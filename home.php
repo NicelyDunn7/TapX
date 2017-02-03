@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<?php include "./dbcreds.php"; ?>
 	<head>
 		<title>Home Page</title>
 		<meta charset="utf-8">
@@ -29,15 +30,19 @@
 			</div>
 			<div class="col-xs-12">
 				<div class="row">
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">State<span class="caret"></span></button>
+					<button class="btn btn-default dropdown-toggle" type="button" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
 					<ul class="dropdown-menu" role="menu">
 						<?php  
-							
+							$i = 0;
+							while ($row = mysql_fetch_array($result)) {
+								echo "<li><a href='#'>" + $row[$i] + "</a></li>";	
+								$i++;
+							}
 						?>
 					</ul>
 				</div>
 				<div class="row">
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">City<span class="caret"></span></button>
+					<button class="btn btn-default dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown">City<span class="caret"></span></button>
 					<ul class="dropdown-menu" role="menu">
 					
 					</ul>					
@@ -45,7 +50,7 @@
 				<div class="row">
 					<ul class="dropdown-menu" role="menu">
 					</ul>				
-					<button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">Bar<span class="caret"></span></button>
+					<button class="btn btn-default dropdown-toggle" type="button" id="barMenu" data-toggle="dropdown">Bar<span class="caret"></span></button>
 				</div>
 			</div>
 		</div>
