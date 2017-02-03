@@ -30,11 +30,21 @@
 			<div class="col-xs-12">
 				<div class="row">
 					<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">State<span class="caret"></span></button>
+					<ul class="dropdown-menu" role="menu">
+						<?php  
+							
+						?>
+					</ul>
 				</div>
 				<div class="row">
 					<button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">City<span class="caret"></span></button>
+					<ul class="dropdown-menu" role="menu">
+					
+					</ul>					
 				</div>
 				<div class="row">
+					<ul class="dropdown-menu" role="menu">
+					</ul>				
 					<button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">Bar<span class="caret"></span></button>
 				</div>
 			</div>
