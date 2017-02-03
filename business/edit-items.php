@@ -29,17 +29,15 @@
 			</div>
 			<div class="col-xs-12">
 
+                <!-- My code starts here. Delete this comment after styling. -->
                 <div>
                     <form role='form' action='save-changes.php' method='POST'>
                         <?php
                             include '../dbcreds.php';
-                        //Fetch all from item table for establishment
                             $row_query = "SELECT * FROM item_list WHERE business_id='1'";
                             $row_result = mysqli_query($conn, $row_query);
                             $row = mysqli_fetch_assoc($row_result);
-                        //Fetch columns from item table
                             $column_query = "SHOW COLUMNS FROM item_list";
-                        //For each column, print column title and corresponding price
                             $result = mysqli_query($conn, $column_query);
                             while($column = mysqli_fetch_array($result)){
                                 if($column['Field'] != 'business_id'){
@@ -52,13 +50,12 @@
                                 }
                             }
                         ?>
-                        <input class='btn btn-info btn-lg' type='submit' name='save' value='Save'>
+                        <input class='btn btn-info btn-lg' type='submit'>
                         <a class='btn btn-success btn-lg' href='business-home.php'>Cancel</a>
                     </form>
                 </div>
+                <!-- My code ends here. Delete this comment after styling. -->
 
-				<div class="row">
-				</div>
 			</div>
 		</div>
 	</body>
