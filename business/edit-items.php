@@ -33,8 +33,9 @@
                 <div>
                     <form role='form' action='save-changes.php' method='POST'>
                         <?php
+							session_start();
                             include '../dbcreds.php';
-                            $row_query = "SELECT * FROM item_list WHERE business_id='1'";
+                            $row_query = "SELECT * FROM item_list WHERE business_id='".$_SESSION['business_id']."'";
                             $row_result = mysqli_query($conn, $row_query);
                             $row = mysqli_fetch_assoc($row_result);
                             $column_query = "SHOW COLUMNS FROM item_list";
@@ -45,12 +46,13 @@
                                     echo "<label class='inputdefault'>";
                                     echo $column['Field'];
                                     echo "</label>";
-                                    echo "<input class='form-control text-input' type='number' name='".$column['Field']."' value='".$row[$column['Field']]."'>";
+                                    echo "<input class='form-control text-input' type='number' step='0.01' name='".$column['Field']."' value='".$row[$column['Field']]."'>";
                                     echo "</div>";
                                 }
                             }
+							mysqli_close($conn);
                         ?>
-                        <input class='btn btn-info btn-lg' type='submit'>
+                        <input class='btn btn-info btn-lg' type='submit' value='Save'>
                         <a class='btn btn-success btn-lg' href='business-home.php'>Cancel</a>
                     </form>
                 </div>
