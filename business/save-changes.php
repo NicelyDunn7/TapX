@@ -17,6 +17,7 @@
 
     //Execute the query. Return to edit-items if successful, error if not
     if(mysqli_query($conn, $sql)){
+        mysqli_close($conn);
         header('Location: edit-items.php');
     } else{
         echo "Error updating record: " . mysqli_error($conn);
