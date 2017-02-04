@@ -33,13 +33,22 @@
                 <div>
                     <form role='form' action='save-changes.php' method='POST'>
                         <?php
+							//Start the session and include the database credentials
 							session_start();
                             include '../dbcreds.php';
+
+							//Select all the item information for the business based on the session variable of
+							//the business_id and store them in an associate array
                             $row_query = "SELECT * FROM item_list WHERE business_id='".$_SESSION['business_id']."'";
                             $row_result = mysqli_query($conn, $row_query);
                             $row = mysqli_fetch_assoc($row_result);
+
+							//Query the column names for the item_list table
                             $column_query = "SHOW COLUMNS FROM item_list";
                             $result = mysqli_query($conn, $column_query);
+
+							//Use the column names to print the item name and find the corresponding price
+							//in the associate array of item prices for that business
                             while($column = mysqli_fetch_array($result)){
                                 if($column['Field'] != 'business_id'){
                                     echo "<div class='form-group'>";
