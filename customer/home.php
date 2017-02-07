@@ -97,10 +97,10 @@
 								// echo "<option value = ";
 								
 								// echo ">";
-								echo "<option>";
-								echo $_SESSION['names'][$k];
+								echo "<option>". $_SESSION['names'][$k] . "</option>";
+								// echo ;
 								//echo $_SESSION['bars'][$k];
-								echo "</option>";
+								// echo ;
 								// echo "<option value = ";
 								// echo $_SESSION['addresses'][$k];
 								// echo ">";
