@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<?php session_start()
+	<!-- <?php session_start()
 
-	?>
+	?> -->
 	<head>
 		<title>Home Page</title>
 		<meta charset="utf-8">
@@ -26,27 +26,6 @@
 		</style>
 	</head>
 	<body>
-	<?php echo "<p>search results: <br>";
-	for($k = 0; $k < $_SESSION['bar_count']; $k++)
-	{
-		echo " ";
-		echo $_SESSION['bars'][$k];
-		echo " ";
-		echo $_SESSION['names'][$k];
-		echo " ";
-		echo $_SESSION['addresses'][$k];
-		echo " ";
-		echo $_SESSION['address2'][$k];
-		echo " ";
-		echo $_SESSION['city'][$k];
-		echo " ";
-		echo $_SESSION['state'][$k];
-		echo " ";
-		echo $_SESSION['zip'][$k];
-		echo " <br>";
-	}
-	echo "</p>";
-?>
 		<div class="container">
 			<div class="col-xs-12">
 				<div id="barName">
@@ -61,7 +40,7 @@
 					<div class="dropdown">	
 						<button type="button" class="btn btn-primary dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="stateDropdown">						
-							<?php 
+							<!-- <?php 
 								include "./state-controller.php";
 								// print_r($_SESSION['states']);
 								// foreach ($_SESSION['states'] as $s => $v)
@@ -74,14 +53,14 @@
 								 	echo "</a></li>";
 								}
 											
-							?>
+							?> -->
 
 						</ul>
 					</div>
 					<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
 							<ul class="dropdown-menu" id="cityDropdown">
-							<?php
+							<!-- <?php
 								include './city-controller.php';
 								for($i = 0; $i < $_SESSION['city_count']; $i++)
 								{
@@ -91,13 +70,43 @@
 								 	echo $_SESSION['cities'][$i];
 								 	echo "</a></li>";
 								}
-							?>
+							?> -->
 							
 						</ul>					
 					</div>
 					<div class="row">
-						<button class="btn btn-primary" type="submit" id="barMenu" >Bar</button>
+						<button class="btn btn-primary" type="submit" id="barMenu">Bar</button>
 					</div>
+					<div class="row">
+					    <select name="bars" disabled="true">
+					    <?php
+							for($k = 0; $k < $_SESSION['bar_count']; $k++)
+							{
+								// echo "<option value = ";
+								// echo $_SESSION['bars'][$k];
+								// echo ">";
+								echo "<option value = ";
+								echo $_SESSION['names'][$k];
+								// echo ">";
+								// echo "<option value = ";
+								// echo $_SESSION['addresses'][$k];
+								// echo ">";
+								// echo "<option value = ";
+								// echo $_SESSION['address2'][$k];
+								// echo ">";
+								// echo "<option value = ";
+								// echo $_SESSION['city'][$k];
+								// echo ">";
+								// echo "<option value = ";
+								// echo $_SESSION['state'][$k];
+								// echo ">";
+								// echo "<option value = ";
+								// echo $_SESSION['zip'][$k];
+								// echo ">";
+							}
+						?>
+						</select>
+					</div> 
 				</form>
 			</div>
 		</div>
@@ -122,6 +131,11 @@
 		    	sessionStorage.setItem('selected_city', selected_city);
 			});
 
+		});
+		$(function(){
+			$("#barMenu").click(function(){
+				document.getElementById("bars").disabled = false;
+			});
 		});
 	</script>
 </html>	
