@@ -18,13 +18,25 @@
 			.row{
 				margin: auto;
 			}	
+			h1{
+				text-align: center;
+			}
+
+			.login-group{
+				width: 50%;
+    			margin: 0 auto;
+			}
+
+			#lg_username, #lg_password{
+
+			}
 		</style>	
 	</head>
 	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 col-md-6">
+					<div class="col-xs-12 col-lg-12">
 						<h1>Customer Login Page</h1>
 						<div class="login-group">
 							<div class="form-group">
