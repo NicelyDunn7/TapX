@@ -12,6 +12,7 @@
       $response[$i]['table_num'] = $row['table_num'];
       $data['posts'][$i] = $response[$i];
       $i=$i+1;
+			echo "<button id='". $row['table_id']."'>". $row['table_num']."</button>";
 		}
 		$json_string =json_encode($data['posts']);
     echo $json_string;
