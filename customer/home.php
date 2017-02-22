@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<!-- <?php session_start()
+	 <?php session_start()
 
-	?> -->
+	?> 
 	<head>
 		<title>Home Page</title>
 		<meta charset="utf-8">
@@ -20,8 +20,20 @@
 				padding: 5px;
 				text-align:center;
 			}
+			.dropdown-container{
+				text-align: center;
+				padding: 5px;
+				position: relative;
+			}
 			#barName{
 				text-align: center;
+			}
+			.dropdown-menu {
+			  left: 50%;
+			  right: auto;
+			  text-align: center;
+			  width: 10px;
+			  transform: translate(-50%, 0);
 			}
 		</style>
 	</head>
@@ -37,57 +49,54 @@
 					<!-- these two inputs are here to serve as the post targets for this form -->
    					 <input class="span2" id="state_input" name="state_input" type="hidden"> 
    					 <input class="span2" id="city_input" name="city_input" type="hidden">
-					<div class="dropdown">	
+					<div class="dropdown-container">	
 						<button type="button" class="btn btn-primary dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
-						<ul class="dropdown-menu" id="stateDropdown">						
-							<!-- <?php 
+						<ul class="dropdown-menu" id="stateDropdown" role="menu">						
+							<?php 
 								include "./state-controller.php";
 								// print_r($_SESSION['states']);
 								// foreach ($_SESSION['states'] as $s => $v)
 								for($i = 0; $i < $_SESSION['state_count']; $i++)
 								{
-								 	echo "<li onclick=\"$('#state_input').val('";
-								 	echo $_SESSION['states'][$i];
-								 	echo "'); \"><a href='#'>";
-								 	echo $_SESSION['states'][$i];
-								 	echo "</a></li>";
+								 	echo "<li onclick=\"$('#state_input').val('" . $_SESSION['states'][$i] . "'); \"><a href='#'>" . $_SESSION['states'][$i] . "</a></li>";
+								 	// echo ;
+								 	// echo ;
+								 	// echo ;
+								 	// echo ;
 								}
 											
-							?> -->
+							?>
 
 						</ul>
 					</div>
-					<div class="dropdown">
+					<div class="dropdown-container">
 						<button class="btn btn-primary dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
-							<ul class="dropdown-menu" id="cityDropdown">
-							<!-- <?php
+							<ul class="dropdown-menu" id="cityDropdown" role="menu">
+							 <?php
 								include './city-controller.php';
 								for($i = 0; $i < $_SESSION['city_count']; $i++)
 								{
-								 	echo "<li onclick=\"$('#city_input').val('";
-								 	echo $_SESSION['cities'][$i];
-								 	echo "'); \"><a href='#'>";
-								 	echo $_SESSION['cities'][$i];
-								 	echo "</a></li>";
+								 	echo "<li onclick=\"$('#city_input').val('" . $_SESSION['cities'][$i] . "'); \"><a href='#'>" . $_SESSION['cities'][$i] . "</a></li>";
 								}
-							?> -->
+							?> 
 							
 						</ul>					
 					</div>
 					<div class="row">
-						<button class="btn btn-primary" type="submit" id="barMenu">Bar</button>
+						<button class="btn btn-primary" type="submit" onclick="myFunction" id="barMenu">Bar</button>
 					</div>
 					<div class="row">
-					    <select name="bars" disabled="true">
+					    <select id="bars">
 					    <?php
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
 								// echo "<option value = ";
-								// echo $_SESSION['bars'][$k];
+								
 								// echo ">";
-								echo "<option value = ";
-								echo $_SESSION['names'][$k];
-								// echo ">";
+								// echo "<option>";
+								echo "<option>". $_SESSION['names'][$k] . "</option>";
+								//echo $_SESSION['bars'][$k];
+								// echo "</option>";
 								// echo "<option value = ";
 								// echo $_SESSION['addresses'][$k];
 								// echo ">";
@@ -107,6 +116,9 @@
 						?>
 						</select>
 					</div> 
+					<div class="row">
+						<a class="btn btn-default" href="./user-login.php" id="go-to-login">Go to Login</a>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -132,10 +144,21 @@
 			});
 
 		});
-		$(function(){
-			$("#barMenu").click(function(){
-				document.getElementById("bars").disabled = false;
-			});
+		$(document).ready(function(){
+		    // var dropdown = document.getElementById("bars");
+		    // var current_value = dropdown.options[dropdown.selectedIndex].value;
+
+		    // if (current_value == null) {
+		    //     document.getElementById("bars").style.display = "none";
+		    // }
+		    // else{
+		    //     //document.getElementById("bars").style.display = "none";
+		    // }
 		});
+		// $(function(){
+		// 	$("#barMenu").click(function(){
+		// 		document.getElementById("bars").disabled = "true";
+		// 	});
+		// });
 	</script>
 </html>	
