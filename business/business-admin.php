@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-xs-12">
 				<div class="row">
-					<button class="btn" id="btn" data-toggle="modal" type="button">Modify Drinks</button>
+					<button class="btn" data-toggle="modal" type="button" data-target="#myModal">Modify Drinks</button>
 				</div>
 				<div class="row">
 					<button class="btn" type="button">Modify Info</button>

@@ -93,10 +93,11 @@
 								// echo "<option value = ";
 								
 								// echo ">";
-								// echo "<option>";
+
 								echo "<option>". $_SESSION['names'][$k] . "</option>";
+								// echo ;
 								//echo $_SESSION['bars'][$k];
-								// echo "</option>";
+								// echo ;
 								// echo "<option value = ";
 								// echo $_SESSION['addresses'][$k];
 								// echo ">";
@@ -144,7 +145,7 @@
 			});
 
 		});
-		$(document).ready(function(){
+		// $(document).ready(function(){
 		    // var dropdown = document.getElementById("bars");
 		    // var current_value = dropdown.options[dropdown.selectedIndex].value;
 
@@ -154,11 +155,6 @@
 		    // else{
 		    //     //document.getElementById("bars").style.display = "none";
 		    // }
-		});
-		// $(function(){
-		// 	$("#barMenu").click(function(){
-		// 		document.getElementById("bars").disabled = "true";
-		// 	});
 		// });
 	</script>
 </html>	
