@@ -124,18 +124,18 @@
 					        <h4 class="modal-title">Modal Header</h4>
 					      </div>
 					      <div class="modal-body">
-					      	<form action="update-info.php" method="POST">
-					        <?php
-								include '../dbcreds.php';
-							?>
-							<input type="text" name="business_name" placeholder="Business">
-							<input type="text" name="address1" placeholder="Address">
-							<input type="text" name="address2" placeholder="Address Two (Leave Blank if N/A)">
-							<input type="text" name="city" placeholder="City">
-							<input type="text" name="state" placeholder="State">
-							<input type="text" name="zip" placeholder="Zip Code">
-							<input type="submit" name="submit" value="Update">
-						  </form>
+						      <form action="update-info.php" method="POST">
+						        <?php
+									include '../dbcreds.php';
+								?>
+								<input type="text" name="business_name" placeholder="Business">
+								<input type="text" name="address1" placeholder="Address">
+								<input type="text" name="address2" placeholder="Address Two (Leave Blank if N/A)">
+								<input type="text" name="city" placeholder="City">
+								<input type="text" name="state" placeholder="State">
+								<input type="text" name="zip" placeholder="Zip Code">
+								<input type="submit" name="submit" value="Update">
+							  </form>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -152,8 +152,13 @@
 					        <h4 class="modal-title">Modal Header</h4>
 					      </div>
 					      <div class="modal-body">
-					        <?php
-							?>
+						      <form action="update-login.php" method="POST">
+								<input type="text" name="username" placeholder="Username">
+								<input type="password" name="old_password" placeholder="Old Password">
+								<input type="password" name="new_password" placeholder="New Password">
+								<input type="password" name="new_password_2" placeholder="Confirm New Password">
+								<input type="submit" name="submit" value="Update">
+							  </form>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -171,8 +176,12 @@
 					        <h4 class="modal-title">Add Admin</h4>
 					      </div>
 					      <div class="modal-body">
-					        <?php
-							?>
+						      <form action="add-login.php" method="POST">
+						        <input type="text" name="admin_username" placeholder="Admin Username">
+								<input type="password" name="new_password_admin" placeholder="New Password">
+								<input type="password" name="new_password_admin_2" placeholder="Confirm New Password">
+								<input type="submit" name="submit" value="Add Admin">
+							  </form>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

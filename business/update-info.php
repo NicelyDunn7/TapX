@@ -29,4 +29,5 @@
 		$zip_result_query =  mysqli_query($conn, $update_zip_query);
 
 	}
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>	

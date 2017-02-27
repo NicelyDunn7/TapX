@@ -29,7 +29,7 @@
 				{
 					// echo "<br> passed";
 					$add_query = "INSERT INTO `tables` (`business_id`, `table_id`, `table_num`, `table_pass`, `salt`) VALUES (".$_SESSION['business_id'].", DEFAULT, ".htmlspecialchars($_POST['table_number']).", '".$pass."', '".$salt."')";
-					// echo "<br> ".$add_query." <br>";
+					echo "<br> ".$add_query." <br>";
 					$add_result = mysqli_query($conn, $add_query);
 					$add = mysqli_fetch_array($add_result);
 
@@ -43,9 +43,6 @@
 			}
 
 		}
-
 	}
-
-
-
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

@@ -48,5 +48,6 @@
 		else
 			echo "Wrong Password";
 	}
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>
