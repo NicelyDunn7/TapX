@@ -17,6 +17,8 @@ socket_listen($socket);
 //create & add listening socket to the list
 $clients = array($socket);
 
+$businesses = array();
+
 //start endless loop, so that our script doesn't stop
 while (true) {
 	//manage multiple connections
@@ -58,10 +60,17 @@ while (true) {
 			printf("\nTable ID: ".$user_table_id);
 			printf("\nItems: ".$user_items);
 
+			//Add new business to businessses arrary with socket and business_id for sending
+			if ($user_type == 'customer'){
+				print("I'm a customer\n");
+			} else if ($user_type == 'business'){
+				array_push($businesses, array('business_id'=>$user_business_id, 'socket'=>$changed_socket));
+			}
+			print_r($businesses);
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
 			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'items'=>$user_items)));
-			send_message($response_text); //send data
+			send_message($response_text, $user_business_id); //send data
 			break 2; //exit this loop
 		}
 
@@ -81,16 +90,26 @@ while (true) {
 // close the listening socket
 socket_close($socket);
 
-function send_message($msg)
+//Find correct business and send only to that business
+function send_message($msg, $business_id)
 {
+	global $businesses;
+	foreach($businesses as $business)
+	{
+		if($business['business_id'] == $business_id){
+			@socket_write($business['socket'],$msg,strlen($msg));
+		}
+	}
+	return true;
 
+	/*
 	global $clients;
 	foreach($clients as $changed_socket)
 	{
 		@socket_write($changed_socket,$msg,strlen($msg));
 	}
 	return true;
-
+	*/
 }
 
 
