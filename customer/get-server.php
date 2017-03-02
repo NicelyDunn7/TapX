@@ -14,7 +14,8 @@
                         business_id: "<?php echo $_COOKIE['business_id']; ?>",
                         type: "customer",
                         table_id: "NULL",
-                        items: "NULL"
+                        quantity: "NULL",
+                        item: "NULL"
                     }
                     ws.send(JSON.stringify(msg));
                     if(window.console) console.log('Connected to Server.');
@@ -26,7 +27,8 @@
                         business_id: "<?php echo $_COOKIE['business_id']; ?>",
                         type: "summon",
                         table_id: "<?php echo $_COOKIE['table_id']; ?>",
-                        items: "NULL"
+                        quantity: "NULL",
+                        item: "NULL"
                     };
                    ws.send(JSON.stringify(msg));
                    alert("Waitress notified...");

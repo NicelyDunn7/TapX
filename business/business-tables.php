@@ -49,7 +49,8 @@
 						business_id: "<?php echo $_SESSION['business_id']; ?>",
 						type: "business",
 						table_id: "NULL",
-						items: "NULL"
+						quantity: "NULL",
+						item: "NULL"
 					}
 					ws.send(JSON.stringify(msg));
 					if(window.console) console.log('Connected to Server.');
@@ -61,12 +62,14 @@
 					var business_id = msg.business_id;
 					var type = msg.type;
 					var table_id = msg.table_id;
-					var items = msg.items;
+					var quantity = msg.quantity;
+					var item = msg.item;
 
 					if(window.console) console.log('Business ID: ' + business_id);
 					if(window.console) console.log('Type: ' + type);
 					if(window.console) console.log('Table ID: ' + table_id);
-					if(window.console) console.log('Items: ' + items);
+					if(window.console) console.log('Quantity: ' + quantity);
+					if(window.console) console.log('Item: ' + item);
 					if(type == 'summon'){
 						alert("Server requested at table " + table_id);
 					}

@@ -54,11 +54,13 @@ while (true) {
 			$user_business_id = $tst_msg->business_id; //business sender is at
 			$user_type = $tst_msg->type; //type of message (order or get or close)
 			$user_table_id = $tst_msg->table_id; //sender table
-			$user_items = $tst_msg->items; //message text
-			printf("Business ID: ".$user_business_id);
-			printf("\nUser Type: ".$user_type);
-			printf("\nTable ID: ".$user_table_id);
-			printf("\nItems: ".$user_items);
+			$user_quantity = $tst_msg->quantity;
+			$user_item = $tst_msg->item; //message text
+			print("Business ID: ".$user_business_id);
+			print("\nUser Type: ".$user_type);
+			print("\nTable ID: ".$user_table_id);
+			print("\nQuantity: ".$user_quantity);
+			print("\nItem: ".$user_item);
 
 			//Add new business to businessses arrary with socket and business_id for sending
 			if ($user_type == 'customer'){
@@ -66,10 +68,10 @@ while (true) {
 			} else if ($user_type == 'business'){
 				array_push($businesses, array('business_id'=>$user_business_id, 'socket'=>$changed_socket));
 			}
-			print_r($businesses);
+
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
-			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'items'=>$user_items)));
+			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
 			send_message($response_text, $user_business_id); //send data
 			break 2; //exit this loop
 		}
