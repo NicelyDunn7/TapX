@@ -53,10 +53,10 @@ while (true) {
 			$user_type = $tst_msg->type; //type of message (order or get or close)
 			$user_table_id = $tst_msg->table_id; //sender table
 			$user_items = $tst_msg->items; //message text
-			print($user_business_id);
-			print($user_type);
-			print($user_table_id);
-			print($user_items);
+			printf("Business ID: ".$user_business_id);
+			printf("\nUser Type: ".$user_type);
+			printf("\nTable ID: ".$user_table_id);
+			printf("\nItems: ".$user_items);
 
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
