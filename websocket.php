@@ -14,27 +14,27 @@ socket_bind($socket, 0, $port);
 //listen to port
 socket_listen($socket);
 
-//create & add listning socket to the list
+//create & add listening socket to the list
 $clients = array($socket);
 
 //start endless loop, so that our script doesn't stop
 while (true) {
-	//manage multipal connections
+	//manage multiple connections
 	$changed = $clients;
 	//returns the socket resources in $changed array
 	socket_select($changed, $null, $null, 0, 10);
 
 	//check for new socket
 	if (in_array($socket, $changed)) {
-		$socket_new = socket_accept($socket); //accpet new socket
+		$socket_new = socket_accept($socket); //accept new socket
 		$clients[] = $socket_new; //add socket to client array
 
 		$header = socket_read($socket_new, 1024); //read data sent by the socket
 		perform_handshaking($header, $socket_new, $host, $port); //perform websocket handshake
 
 		socket_getpeername($socket_new, $ip); //get ip address of connected socket
-		$response = mask(json_encode(array('type'=>'system', 'message'=>$ip.' connected'))); //prepare json data
-		send_message($response); //notify all users about new connection
+		//$response = mask(json_encode(array('type'=>'system', 'message'=>$ip.' connected'))); //prepare json data
+		//send_message($response); //notify all users about new connection
 
 		//make room for new socket
 		$found_socket = array_search($socket, $changed);
@@ -44,19 +44,21 @@ while (true) {
 	//loop through all connected sockets
 	foreach ($changed as $changed_socket) {
 
-		//check for any incomming data
+		//check for any incoming data
 		while(socket_recv($changed_socket, $buf, 1024, 0) >= 1)
 		{
 			$received_text = unmask($buf); //unmask data
 			$tst_msg = json_decode($received_text); //json decode
-			$user_name = $tst_msg->name; //sender name
-			$user_message = $tst_msg->message; //message text
-			$user_color = $tst_msg->color; //color
+			$user_business_id = $tst_msg->business_id; //business sender is at
+			$user_type = $tst_msg->type; //type of message (order or get or close)
+			$user_table_id = $tst_msg->table_id; //sender table
+			$user_items = $tst_msg->items; //message text
 
 			//prepare data to be sent to client
-			$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
+			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
+			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'items'=>$user_items)));
 			send_message($response_text); //send data
-			break 2; //exist this loop
+			break 2; //exit this loop
 		}
 
 		$buf = @socket_read($changed_socket, 1024, PHP_NORMAL_READ);
@@ -67,8 +69,8 @@ while (true) {
 			unset($clients[$found_socket]);
 
 			//notify all users about disconnected connection
-			$response = mask(json_encode(array('type'=>'system', 'message'=>$ip.' disconnected')));
-			send_message($response);
+			//$response = mask(json_encode(array('type'=>'system', 'message'=>$ip.' disconnected')));
+			//send_message($response);
 		}
 	}
 }
@@ -77,12 +79,14 @@ socket_close($socket);
 
 function send_message($msg)
 {
+
 	global $clients;
 	foreach($clients as $changed_socket)
 	{
 		@socket_write($changed_socket,$msg,strlen($msg));
 	}
 	return true;
+
 }
 
 
