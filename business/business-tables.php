@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 	<head>
 		<title>Table Page</title>
@@ -36,6 +37,54 @@
 			});*/
 		</script>
 
+		<script language="javascript", type="text/javascript">
+			$(document).ready(function(){
+				//Create new websocket
+				var addr = "ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/websocket.php";
+				var ws = new WebSocket(addr);
+
+				ws.onopen = function(ev) { // connection is open
+					//Send message to tell server a business has connected
+					var msg = {
+						business_id: "<?php echo $_SESSION['business_id']; ?>",
+						type: "business",
+						table_id: "NULL",
+						quantity: "NULL",
+						item: "NULL"
+					}
+					ws.send(JSON.stringify(msg));
+					if(window.console) console.log('Connected to Server.');
+				}
+
+				ws.onmessage = function(ev){
+					//Get message contents
+					var msg = JSON.parse(ev.data); //PHP sends Json data
+					var business_id = msg.business_id;
+					var type = msg.type;
+					var table_id = msg.table_id;
+					var quantity = msg.quantity;
+					var item = msg.item;
+
+					if(window.console) console.log('Business ID: ' + business_id);
+					if(window.console) console.log('Type: ' + type);
+					if(window.console) console.log('Table ID: ' + table_id);
+					if(window.console) console.log('Quantity: ' + quantity);
+					if(window.console) console.log('Item: ' + item);
+					if(type == 'summon'){
+						alert("Server requested at table " + table_id);
+					}
+				}
+
+				ws.onerror	= function(ev){
+					if(window.console) console.log('Error Occured: ' + ev.data);
+				};
+				ws.onclose 	= function(ev){
+					if(window.console) console.log('Disconnected from Server.');
+				};
+
+			});
+		</script>
+
 		<style type="text/css">
 			.container{
 				margin: 0 auto;
@@ -53,8 +102,6 @@
 	<body>
 		<?php
 			include '../dbcreds.php';
-			session_start();
-			$_SESSION['business_id'] = 1;
 			$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
@@ -63,7 +110,7 @@
 					echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar[0]); echo "!</h1></div><br><br>";
 
 				echo "<h1>".$_SESSION['business_name']."</h1>";
-				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."'";
+				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
 				$table_result = mysqli_query($conn, $table_query);
 
 				while($row = mysqli_fetch_array($table_result)){
@@ -74,9 +121,6 @@
 		<div class="container">
 			<div class="col-xs-12">
               <!-- My code starts here. Delete this comment after styling. -->
-
-
-</script>
 
 			</div>
 		</div>
