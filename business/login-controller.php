@@ -24,7 +24,7 @@
             if(password_verify($saltedpass, $password)){
                 $_SESSION['business_id'] = $business_id;
                 mysqli_close($conn);
-                header('Location: business-home.php');
+                header('Location: business-admin.php');
             } else{
                 echo "<h4>Authentication Failure</h4>";
                 echo "<a href='business-login.php'>Return To Login</a>";
