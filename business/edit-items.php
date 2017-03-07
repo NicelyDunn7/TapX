@@ -28,8 +28,6 @@
 				</div>
 			</div>
 			<div class="col-xs-12">
-
-                <!-- My code starts here. Delete this comment after styling. -->
                 <div>
                     <form role='form' action='save-changes.php' method='POST'>
                         <?php
@@ -65,8 +63,6 @@
                         <a class='btn btn-success btn-lg' href='business-home.php'>Cancel</a>
                     </form>
                 </div>
-                <!-- My code ends here. Delete this comment after styling. -->
-
 			</div>
 		</div>
 	</body>
