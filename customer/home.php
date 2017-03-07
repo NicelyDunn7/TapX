@@ -58,11 +58,11 @@
 								// foreach ($_SESSION['states'] as $s => $v)
 								for($i = 0; $i < $_SESSION['state_count']; $i++)
 								{
-								 	echo "<li onclick=\"$('#state_input').val('";
-								 	echo $_SESSION['states'][$i];
-								 	echo "'); \"><a href='#'>";
-								 	echo $_SESSION['states'][$i];
-								 	echo "</a></li>";
+								 	echo "<li onclick=\"$('#state_input').val('" . $_SESSION['states'][$i] . "'); \"><a href='#'>" . $_SESSION['states'][$i] . "</a></li>";
+								 	// echo ;
+								 	// echo ;
+								 	// echo ;
+								 	// echo ;
 								}
 											
 							?>
@@ -76,11 +76,7 @@
 								include './city-controller.php';
 								for($i = 0; $i < $_SESSION['city_count']; $i++)
 								{
-								 	echo "<li onclick=\"$('#city_input').val('";
-								 	echo $_SESSION['cities'][$i];
-								 	echo "'); \"><a href='#'>";
-								 	echo $_SESSION['cities'][$i];
-								 	echo "</a></li>";
+								 	echo "<li onclick=\"$('#city_input').val('" . $_SESSION['cities'][$i] . "'); \"><a href='#'>" . $_SESSION['cities'][$i] . "</a></li>";
 								}
 							?> 
 							
@@ -97,6 +93,7 @@
 								// echo "<option value = ";
 								
 								// echo ">";
+
 								echo "<option>". $_SESSION['names'][$k] . "</option>";
 								// echo ;
 								//echo $_SESSION['bars'][$k];
@@ -148,10 +145,16 @@
 			});
 
 		});
-		// $(function(){
-		// 	$("#barMenu").click(function(){
-		// 		document.getElementById("bars").disabled = "true";
-		// 	});
+		// $(document).ready(function(){
+		    // var dropdown = document.getElementById("bars");
+		    // var current_value = dropdown.options[dropdown.selectedIndex].value;
+
+		    // if (current_value == null) {
+		    //     document.getElementById("bars").style.display = "none";
+		    // }
+		    // else{
+		    //     //document.getElementById("bars").style.display = "none";
+		    // }
 		// });
 	</script>
 </html>	
