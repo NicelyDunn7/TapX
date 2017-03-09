@@ -11,7 +11,7 @@
 
         echo "<h1>Business Name: " . $business_name;
         echo "<h3>Address: ".$address." ".$address2."<br>".$city.", ".$state." ".$zip."</h3>";
-        echo "<a href=''>View PDF Menu</a>";
+        echo "<a href='../menus/".$_COOKIE['business_id'].".pdf'>View PDF Menu</a>";
 
         mysqli_close($conn);
     } else {
