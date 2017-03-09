@@ -10,5 +10,7 @@
   - Import datadump: mysql -h [host] -u [username] -p[password] < database.sql
 * Create a dbcreds.php file in the main folder and include your own database login credentials
 * We did not obtain an SSL certificate, but we highly recommend it. As such, you may want to acquire an SSL certificate and add HTTPS headers to the pages
+* Upload pdf menus into the menus folder
+  - Name each menu as *business_id*.pdf (replace business_id with the appropriate id
 * Start a process for websocket.php
 * Test your website by heading to the url of your server
