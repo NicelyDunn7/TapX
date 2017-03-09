@@ -63,6 +63,7 @@
 
 
 echo "
+				window.location = 'cust-order-form.php';
 				}
 				ws.onerror	= function(ev){
 					if(window.console) console.log('Error Occured: ' + ev.data);
