@@ -132,10 +132,10 @@
 						</ul>					
 					</div>
 					<div class="row">
-						<button class="btn btn-primary" type="submit" onclick="myFunction" id="barMenu">Bar</button>
+						<button class="btn btn-primary" type="submit" onclick="myFunction" name="submit" value="bar" id="barMenu">Bar</button>
 					</div>
 					<div class="row">
-					    <select id="bars">
+					    <select id="bars" name="selected_bar">
 					    <?php
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
@@ -143,7 +143,7 @@
 								
 								// echo ">";
 
-								echo "<option>". $_SESSION['names'][$k] . "</option>";
+								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
 								// echo ;
 								//echo $_SESSION['bars'][$k];
 								// echo ;
@@ -167,7 +167,7 @@
 						</select>
 					</div> 
 					<div class="row">
-						<a class="btn btn-default" href="./user-login.php" id="go-to-login">Go to Login</a>
+						<button class="btn btn-default" type="submit" name="submit" value="login" id="go-to-login">Go to Login</button>
 					</div>
 				</form>
 			</div>
