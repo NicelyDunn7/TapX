@@ -22,6 +22,6 @@
     } else{
         echo "Error updating record: " . mysqli_error($conn);
     }
-
+ 
     mysqli_close($conn);
  ?>
