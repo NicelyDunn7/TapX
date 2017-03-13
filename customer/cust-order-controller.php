@@ -6,9 +6,11 @@
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = 'ws://ec2-54-202-88-8.us-west-2.compute.amazonaws.com/:9998/websocket.php';
+				var addr = 'ws://ec2-54-202-88-8.us-west-2.compute.amazonaws.com:9998/websocket.php';
 				var ws = new WebSocket(addr);
 				var msg;
+				var tab = {"orderItems": []};
+				var temp;
 
 				//Open connection, send message to notify server a customer has connected
 				ws.onopen = function(ev) { // connection is open
@@ -31,6 +33,32 @@
 
 	$item_list = array();
 
+	function modifyItem(deviceId, Qty)
+	{
+	    var cart_items = $.cookie('devicelist').cartItems;
+
+	    $(cart_items).each( function(i, v) {
+	      if (v && v.deviceId == deviceId) {
+	      cart_items[i].quantity = Qty;
+	      }
+	    });
+	    var obj = { "cartItems": cart_items };
+	    $.cookie('devicelist', obj);
+	}
+
+	function deleteItem(deviceId)
+	{
+	    var cart_items = $.cookie('devicelist').cartItems;
+
+	    $(cart_items).each( function(i, v) {
+	      if (v && v.deviceId == deviceId) {
+	      cart_items.splice(i, 1);
+	      }
+	    });
+	    var obj = { "cartItems": cart_items };
+	    $.cookie('devicelist', obj);
+	}
+
 	foreach($_POST as $key => $value){
 		if($value != ''  && $value != '0'){
 			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
@@ -39,6 +67,8 @@
 			if($price != 0){
 				$totalPrice += $price;
 			}
+
+
 			//echo " bringing your total to: $";
 			//echo $totalPrice;
 			//echo "<br><br>";
@@ -50,11 +80,20 @@
 				quantity: ".$value.",
 				item: \"".$key."\"
 							};
-						   ws.send(JSON.stringify(msg));
-						   alert('Waitress notified...');
+			";
+			foreach(var i=0; i<msg.length; i++){
+				var temp = msg.length;
+				alert('temp');
+			}
+
+
+			echo "
+							ws.send(JSON.stringify(msg));
+						   	alert('Waitress notified...');
 		";
 		}
     }
+
 	//print_r($item_list);
 
 	//echo "<br><br><br>";
@@ -63,6 +102,7 @@
 
 
 echo "
+				window.location = 'cust-order-form.php'
 				}
 				ws.onerror	= function(ev){
 					if(window.console) console.log('Error Occured: ' + ev.data);

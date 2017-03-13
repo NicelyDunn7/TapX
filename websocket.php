@@ -61,6 +61,7 @@ while (true) {
 			print("\nTable ID: ".$user_table_id);
 			print("\nQuantity: ".$user_quantity);
 			print("\nItem: ".$user_item);
+			print("\n\n");
 
 			//Add new business to businessses arrary with socket and business_id for sending
 			if ($user_type == 'customer'){

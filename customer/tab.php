@@ -1,13 +1,24 @@
 <?php
  	session_start();
  	include '../dbcreds.php';
- 	include 'customer-order-controller.php';
+ 	include 'cust-order-controller.php';
 
 
- 	$itemArray = array();
- 	$priceArray = array();
+if(isset($_GET[$key])){
+    $i = $GET[$key];
+}
+if(isset($_GET[$value])){
+    $j = $GET[$value];
+}
+if(isset($_GET[$price])){
+    $k = $GET[$price];
+}
+
+// 	$itemArray = array();
+// 	$priceArray = array();
 
 
+ /*
  	echo "Items and their quantities: <br>";
  	if(isset($_COOKIE['Item'])){
  		foreach($_COOKIE['Item'] as $key => $value){
@@ -43,7 +54,7 @@
 
  	//echo "<br><br>Total Price = $" . $_COOKIE["SumTotalPrice"];
 
-
+ 	*/
  	echo "<br><br><br>";
  	echo "<a class='btn btn-info btn-lg' href='cust-order-form.php'>Back to Order!</a>";
  ?>
