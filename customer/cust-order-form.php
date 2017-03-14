@@ -35,8 +35,8 @@
 		//WORK ON!		include 'cust-order-controller';
 
 						//find the current bar you have currently selected to output on customer order page
-						$_SESSION['business_id'] = 2;
-						$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
+					/*	$_SESSION['business_id'] = 2;*/
+						$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_COOKIE['business_id']."'";
 						$bar_result = mysqli_query($conn, $bar_query);
 						$bar = mysqli_fetch_array($bar_result);
 						
@@ -46,7 +46,7 @@
 						echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar['business_name']); echo "!</h1></div><br><br>";
 						
 						//query to find the right drinks for the current bar
-						$row_query = "SELECT * FROM item_list WHERE business_id='".$_SESSION['business_id']."'";
+						$row_query = "SELECT * FROM item_list WHERE business_id='".$_COOKIE['business_id']."'";
 						$row_result = mysqli_query($conn, $row_query);
 						$row = mysqli_fetch_assoc($row_result);
 						

@@ -9,18 +9,8 @@
 				var addr = 'ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php';
 				var ws = new WebSocket(addr);
 				var msg;
-
-				//Open connection, send message to notify server a customer has connected
 				ws.onopen = function(ev) { // connection is open
-				//	msg = {
-				//		business_id:  ".$_COOKIE['business_id'].",
-				//		type: \"customer\",
-				//		table_id:  ".$_COOKIE['table_id'].",
-				//		items: \"NULL\"
-				//	}
-				//	ws.send(JSON.stringify(msg));
-				//	if(window.console) console.log('Connected to Server.');
-				//}
+		
 	";
 
 
@@ -30,20 +20,32 @@
 	$row = mysqli_fetch_assoc($row_result);
 
 	$item_list = array();
-
+	$cookie_string = array();
+	if(isset($_COOKIE['tab']))
+	{
+		foreach (json_decode($_COOKIE['tab']) as $key => $value) {
+			$cookie_string[$key] += $value;
+		}
+	}
 	foreach($_POST as $key => $value){
 		if($value != ''  && $value != '0'){
 			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
-			$price = $row[$key] * $value;
+			// $price = $row[$key] * $value;
 
-			if($price != 0){
-				$totalPrice += $price;
-			}
+			// if($price != 0){
+			// 	$totalPrice += $price;
+			// }
+
+			$cookie_string[$key] += $value;
+			
+			
+
 			//echo " bringing your total to: $";
 			//echo $totalPrice;
 			//echo "<br><br>";
 			//array_push($item_list, array('item'=>$key, 'quantity'=>$value));
-			echo "msg = {
+			echo "
+			msg = {
 				business_id: ".$_COOKIE['business_id'].",
 				type: \"order\",
 				table_id: ".$_COOKIE['table_id'].",
@@ -55,6 +57,9 @@
 		";
 		}
     }
+
+    setcookie('tab', json_encode($cookie_string));
+    header('Location: cust-order-form.php');
 	//print_r($item_list);
 
 	//echo "<br><br><br>";
