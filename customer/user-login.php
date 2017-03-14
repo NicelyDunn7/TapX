@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -40,7 +41,7 @@
 						<h1>Customer Login Page</h1>
 						<form method="POST" action="login-controller.php">
 							<div class="login-group">
-								<input type="hidden" name="business_id" value="<?php echo $_POST['business_id']; ?>">
+								<input type="hidden" name="business_id" value="<?php echo $_COOKIE['business_id']; ?>">
 								<div class="form-group">
 									<label for="lg_name" class="sr-only">Name</label>
 									<input type="text" class="form-control" id="lg_name" name="name" placeholder="Enter Your Name">
