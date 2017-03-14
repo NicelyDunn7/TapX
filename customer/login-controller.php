@@ -10,9 +10,9 @@
         $business_id = $_POST['business_id'];
         $user_name = $_POST['name'];
         $table_num = $_POST['table_num'];
-
+        echo "hi";
         //Select the admin credentials from database based on entered business_id and username
-        if($stmt = $conn->prepare("SELECT * FROM tables WHERE business_id=? AND table_num=?")){
+        if($stmt = $conn->prepare("SELECT business_id, table_id, table_num, table_pass, salt FROM tables WHERE business_id=? AND table_num=?")){
             $stmt->bind_param('is', htmlspecialchars($business_id), htmlspecialchars($table_num));
             $stmt->execute();
             $stmt->bind_result($business_id, $table_id, $table_num, $table_pass, $salt);

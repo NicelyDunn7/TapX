@@ -8,7 +8,9 @@
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script>
 		/*	$(document).ready(function(createTable){
 				$('.business-tables').click(function(event){
@@ -40,7 +42,7 @@
 		<script language="javascript", type="text/javascript">
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = "ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/websocket.php";
+				var addr = "ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php";
 				var ws = new WebSocket(addr);
 
 				ws.onopen = function(ev) { // connection is open
@@ -72,6 +74,12 @@
 					if(window.console) console.log('Item: ' + item);
 					if(type == 'summon'){
 						alert("Server requested at table " + table_id);
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).prepend("<p>Server Requested!</p>");
+					}
+					if(type=="order"){
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
 					}
 				}
 
@@ -83,6 +91,11 @@
 				};
 
 			});
+
+			function clearTable(table_id){
+				document.getElementById(table_id).style.background = "white";
+				document.getElementById("body" + table_id).innerHTML = "";
+			}
 		</script>
 
 		<style type="text/css">
@@ -97,6 +110,24 @@
 			#barName{
 				text-align: center;
 			}
+			.flex-container {
+			  padding: 0;
+			  margin: 0;
+			  list-style: none;
+			  display: flex;
+			  align-items: center;
+			  justify-content: center;
+			}
+			.flex-item{
+
+				font-size: 60px;
+				width:100px;
+				height:100px;
+				border:1px solid #000;
+				text-align: center;
+				color: #000000;
+
+			}
 			</style>
 
 
@@ -109,22 +140,40 @@
 					$bar = mysqli_fetch_array($bar_result);
 
 					//print the name of the bar at the top of the customer order page
-					echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar[0]); echo "!</h1></div><br><br>";
 
 				echo "<h1>".$_SESSION['business_name']."</h1>";
 				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
 				$table_result = mysqli_query($conn, $table_query);
 
+				echo "<div class='flex-container'>";
 				while($row = mysqli_fetch_array($table_result)){
-					echo "<button id='". $row['table_id']."'>". $row['table_num']."</button>";
+					echo "<button type='button' data-toggle='modal' data-target='#modal".$row['table_id']."' class='flex-item' id='". $row['table_id']."'>". $row['table_num']."</button>";
 				}
+				echo "</div>";
+				$table_query2 =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
+				$table_result2 = mysqli_query($conn, $table_query2);
+				echo "<div class='col-md-12'>";
+				while($row = mysqli_fetch_array($table_result2)){
+					echo  "<div id='modal".$row['table_id']."' class='modal fade' role='dialog'>
+						  		<div class='modal-dialog'>
+						  			<div class='modal-content'>
+						  				<div class='modal-header'>
+						  					<h4 class='modal-title'>Table ".$row['table_num']."</h4>
+					      				</div>
+						      			<div id='body".$row['table_id']."' class='modal-body'>
+
+						      			</div>	
+						      			<div class='modal-footer'>
+									        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+									        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
+									    </div>
+									</div>    
+								</div>
+						   </div>";
+
+				}
+				echo "</div>";
 				mysqli_close($conn);
 		?>
-		<div class="container">
-			<div class="col-xs-12">
-              <!-- My code starts here. Delete this comment after styling. -->
-
-			</div>
-		</div>
 	</body>
 </html>

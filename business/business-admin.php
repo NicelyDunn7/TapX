@@ -62,7 +62,7 @@
 					      <form action="update-tables.php" method="POST">
 					        <?php
 					        	//pulled lukes code from the business-tables page to draw the tables.
-								$_SESSION['business_id'] = 1; //*********************** CHANGE THIS WHEN WE GET BAR LOGIN WORKING!!!! ****************************
+								// $_SESSION['business_id'] = 1; //*********************** CHANGE THIS WHEN WE GET BAR LOGIN WORKING!!!! ****************************
 								$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 										$bar_result = mysqli_query($conn, $bar_query);
 										$bar = mysqli_fetch_array($bar_result);
