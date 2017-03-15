@@ -42,7 +42,7 @@
 		<script language="javascript", type="text/javascript">
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = "ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php";
+				var addr = "ws:ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/TapX/websocket.php";
 				var ws = new WebSocket(addr);
 
 				ws.onopen = function(ev) { // connection is open
@@ -162,12 +162,12 @@
 					      				</div>
 						      			<div id='body".$row['table_id']."' class='modal-body'>
 
-						      			</div>	
+						      			</div>
 						      			<div class='modal-footer'>
 									        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
 									        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
 									    </div>
-									</div>    
+									</div>
 								</div>
 						   </div>";
 

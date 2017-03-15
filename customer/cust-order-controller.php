@@ -6,11 +6,11 @@
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = 'ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php';
+				var addr = 'ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/TapX/websocket.php';
 				var ws = new WebSocket(addr);
 				var msg;
 				ws.onopen = function(ev) { // connection is open
-		
+
 	";
 
 
@@ -37,8 +37,8 @@
 			// }
 
 			$cookie_string[$key] += $value;
-			
-			
+
+
 
 			//echo " bringing your total to: $";
 			//echo $totalPrice;
