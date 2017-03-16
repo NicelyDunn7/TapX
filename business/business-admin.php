@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 	include "../dbcreds.php";
 	session_start();
 ?>
@@ -18,7 +18,7 @@
 		<div class="container">
 			<div class="col-md-12">
 				<div id="barName">
-				<?php  
+				<?php
 					$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
@@ -48,6 +48,19 @@
 					<!-- <h2>Click here to add your login information or update your login information!</h2> -->
 					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
 				</div>
+				<div class="row">
+					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#uploadMenuModal">Upload PDF Menu</button>
+				</div>
+				<?php
+					$path = '../menus/' . $_SESSION['business_id'] . '.pdf';
+					if(file_exists($path)){
+						echo "
+							<div class='row'>
+								<a href='" . $path . "' class='btn-lg btn-info' type='button'>View PDF Menu</a>
+							</div>
+						";
+					}
+				 ?>
 			</div>
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
@@ -189,9 +202,26 @@
 				    	</div>
 				 	</div>
 				</div>
+				<div id="uploadMenuModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Upload PDF Menu</h4>
+							</div>
+							<div class="modal-body">
+								<form action="upload-menu.php" method="POST" enctype="multipart/form-data">
+									Select a PDF file to upload:
+									<input type="file" name="pdf" id="pdf" accept="application/pdf">
+									<input type="submit" value="Upload Menu" name="submit">
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		<script>
-		</script>
 	</body>
-</html>	
+</html>
