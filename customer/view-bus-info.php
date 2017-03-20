@@ -1,5 +1,8 @@
 <?php
     include '../dbcreds.php';
+    if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+        header('Location: home.php');
+    }
 
     $query = "SELECT * FROM businesses WHERE business_id=?";
     if($stmt = $conn->prepare($query)){

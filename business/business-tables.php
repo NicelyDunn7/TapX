@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php 
+	session_start();
+	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+		header('Location: business-login.php');
+} ?>
 <html>
 	<head>
 		<title>Table Page</title>

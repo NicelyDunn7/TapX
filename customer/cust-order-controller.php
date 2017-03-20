@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+		header('Location: home.php');
+	}
 	include '../dbcreds.php';
 	echo "
 		<script src='../jquery-3.1.1.js'></script>

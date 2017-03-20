@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
-	 <?php session_start()
-
+	 <?php
+	 	session_start();
+	 	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+			header('Location: home.php');
+		}
 	?>
 	<head>
 		<title>Home Page</title>

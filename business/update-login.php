@@ -1,8 +1,12 @@
 <?php
 	include "../dbcreds.php";
 	session_start();
+	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+		header('Location: business-login.php');
+	}
+	
 	if(htmlspecialchars($_POST['submit']) == "Update") //if update
-	{	
+	{
 		$salt_query = "SELECT salt, password FROM business_admins WHERE business_id='".$_SESSION['business_id']."' AND username = '".htmlspecialchars($_POST['username'])."'";
 		$salt_result = mysqli_query($conn, $salt_query);
 		$salt = mysqli_fetch_array($salt_result);

@@ -2,6 +2,9 @@
     //Start the session and include the database login credentials
     session_start();
     include '../dbcreds.php';
+    if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+        header('Location: business-login.php');
+    }
 
     //Dynamically construct the SQL statement from the POST data
     $sql = "Update item_list SET ";
@@ -22,6 +25,6 @@
     } else{
         echo "Error updating record: " . mysqli_error($conn);
     }
- 
+
     mysqli_close($conn);
  ?>

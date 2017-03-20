@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <?php
+            if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+                header('Location: home.php');
+            }
+         ?>
         <script src="../jquery-3.1.1.js"></script>
         <script language="javascript" type="text/javascript">
             $(document).ready(function(){

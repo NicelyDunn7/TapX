@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+	<?php
+		session_start();
+		if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+			header('Location: business-login.php');
+		}
+	 ?>
 	<head>
 		<title>Modify Items</title>
 		<meta charset="utf-8">
@@ -32,7 +38,6 @@
                     <form role='form' action='save-changes.php' method='POST'>
                         <?php
 							//Start the session and include the database credentials
-							session_start();
                             include '../dbcreds.php';
 
 							//Select all the item information for the business based on the session variable of
