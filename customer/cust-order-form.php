@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	 <?php
-	 	session_start();
 	 	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
 			header('Location: home.php');
 		}
@@ -33,7 +32,6 @@
 					<?php
 			//echo "<form action='cust-order-controller.php' method='post'>";
 						//start session and include database
-						session_start();
 						include '../dbcreds.php';
 		//WORK ON!		include 'cust-order-controller';
 

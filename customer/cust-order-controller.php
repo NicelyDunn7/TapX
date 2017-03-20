@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
 		header('Location: home.php');
 	}
@@ -18,7 +17,7 @@
 
 
 	//query to find the right drinks for the current bar
-	$row_query = "SELECT * FROM item_list WHERE business_id='".$_SESSION['business_id']."'";
+	$row_query = "SELECT * FROM item_list WHERE business_id='".$_COOKIE['business_id']."'";
 	$row_result = mysqli_query($conn, $row_query);
 	$row = mysqli_fetch_assoc($row_result);
 
