@@ -61,6 +61,7 @@
 		}
     }
 
+	mysqli_close($conn);
     setcookie('tab', json_encode($cookie_string));
     header('Location: cust-order-form.php');
 	//print_r($item_list);

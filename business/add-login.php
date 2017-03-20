@@ -49,6 +49,7 @@
 		}
 
 	}
+	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>

@@ -4,7 +4,7 @@
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
 		header('Location: business-login.php');
 	}
-	
+
 	if(htmlspecialchars($_POST['submit']) == "Add Table") //if update table password
 	{
 		$check_query = "SELECT count(*) FROM tables WHERE business_id='".$_SESSION['business_id']."' AND table_num = '".htmlspecialchars($_POST['table_number'])."'";
@@ -48,5 +48,6 @@
 
 		}
 	}
+	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

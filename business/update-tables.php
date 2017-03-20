@@ -4,7 +4,7 @@
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
 		header('Location: business-login.php');
 	}
-	
+
 	if(htmlspecialchars($_POST['submit']) == "Update") //if update table password
 	{
 		$salt_query = "SELECT salt, table_pass FROM tables WHERE business_id='".$_SESSION['business_id']."' AND table_num = '".htmlspecialchars($_POST['table_number'])."'";
@@ -52,6 +52,7 @@
 		else
 			echo "Wrong Password";
 	}
+	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>
