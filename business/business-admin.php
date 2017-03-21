@@ -67,6 +67,9 @@
 						";
 					}
 				 ?>
+				 <div class="row">
+					 <a href="logout-controller.php">Logout</a>
+				 </div>
 			</div>
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
