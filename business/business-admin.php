@@ -32,6 +32,9 @@
 			</div>
 			<div class="col-md-12" id="buttonGroup">
 				<div class="row">
+					<a href="business-tables.php" class="btn-lg btn-info" type="button">Tables Page</a>
+				</div>
+				<div class="row">
 					<!-- <h2>Click here to modify your tables!</h2> -->
 					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
 				</div>

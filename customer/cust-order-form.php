@@ -14,7 +14,6 @@
 	    <script src="../jquery.min.js"></script>
 	    <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
-			<!-- WHERE CSS STARTED -->
 		</style>
 	</head>
 	<body>

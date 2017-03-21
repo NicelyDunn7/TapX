@@ -8,9 +8,9 @@
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
+				var msg;
 				var addr = 'ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/TapX/websocket.php';
 				var ws = new WebSocket(addr);
-				var msg;
 				ws.onopen = function(ev) { // connection is open
 
 	";
@@ -30,7 +30,7 @@
 		}
 	}
 	foreach($_POST as $key => $value){
-		if($value != ''  && $value != '0'){
+		if($value != ''  && $value > 0){
 			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
 			// $price = $row[$key] * $value;
 
@@ -55,14 +55,12 @@
 				item: \"".$key."\"
 							};
 						   ws.send(JSON.stringify(msg));
-						   alert('Waitress notified...');
 		";
 		}
     }
 
-	mysqli_close($conn);
     setcookie('tab', json_encode($cookie_string));
-    header('Location: cust-order-form.php');
+    //header('Location: cust-order-form.php');
 	//print_r($item_list);
 
 	//echo "<br><br><br>";
@@ -71,7 +69,9 @@
 
 
 echo "
-				window.location = 'cust-order-form.php';
+				setTimeout(function(){
+					window.location = 'cust-order-form.php';
+				}, 2000);
 				}
 				ws.onerror	= function(ev){
 					if(window.console) console.log('Error Occured: ' + ev.data);
@@ -83,4 +83,5 @@ echo "
 			});
 		</script>
 	";
+	mysqli_close($conn);
 ?>
