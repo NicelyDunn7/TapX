@@ -68,7 +68,7 @@
 					}
 				 ?>
 				 <div class="row">
-					 <a href="logout-controller.php">Logout</a>
+					 <a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>
 				 </div>
 			</div>
 			<div class="col-md-12">
