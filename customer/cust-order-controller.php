@@ -22,15 +22,22 @@
 	$row = mysqli_fetch_assoc($row_result);
 
 	$item_list = array();
-	$cookie_string = array();
+	$price_string = array();
+	$quanity_string = array();
 	if(isset($_COOKIE['tab']))
 	{
-		foreach (json_decode($_COOKIE['tab']) as $key => $value) {
-			$cookie_string[$key] += $value;
+		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
+			$quantity_string[$name] += $quantity;
 		}
 	}
-	foreach($_POST as $key => $value){
-		if($value != ''  && $value > 0){
+	if(isset($_COOKIE['tab_price']))
+	{
+		foreach (json_decode($_COOKIE['tab_price']) as $name => $price) {
+			$price_string[$name] += $price;
+		}
+	}
+	foreach($_POST as $name => $quantity){
+		if($quantity != ''  && $quantity > 0){
 			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
 			// $price = $row[$key] * $value;
 
@@ -38,8 +45,8 @@
 			// 	$totalPrice += $price;
 			// }
 
-			$cookie_string[$key] += $value;
-
+			$quantity_string[$name] += $quantity;
+			$price_string[$name] += $row[$name] * $quantity;
 
 
 			//echo " bringing your total to: $";
@@ -51,15 +58,16 @@
 				business_id: ".$_COOKIE['business_id'].",
 				type: \"order\",
 				table_id: ".$_COOKIE['table_id'].",
-				quantity: ".$value.",
-				item: \"".$key."\"
+				quantity: ".$quantity.",
+				item: \"".$name."\"
 							};
-						   ws.send(JSON.stringify(msg));
-		";
+				   ws.send(JSON.stringify(msg));
+				";
 		}
     }
 
-    setcookie('tab', json_encode($cookie_string));
+    setcookie('tab', json_encode($quantity_string));
+	setcookie('tab_price', json_encode($price_string));
     //header('Location: cust-order-form.php');
 	//print_r($item_list);
 
@@ -85,3 +93,4 @@ echo "
 	";
 	mysqli_close($conn);
 ?>
+<!-- <a href="cust-order-form.php">Link</a> -->

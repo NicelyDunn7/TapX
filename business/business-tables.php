@@ -145,7 +145,7 @@
 
 					//print the name of the bar at the top of the customer order page
 
-				echo "<h1>".$_SESSION['business_name']."</h1>";
+				echo "<a href='business-admin.php'><h1>".$_SESSION['business_name']."</h1></a>";
 				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
 				$table_result = mysqli_query($conn, $table_query);
 
