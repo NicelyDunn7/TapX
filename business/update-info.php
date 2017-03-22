@@ -1,9 +1,12 @@
 <?php
 	include "../dbcreds.php";
 	session_start();
+	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+		header('Location: business-login.php');
+	}
 	if(htmlspecialchars($_POST['submit']) == "Update")
 	{
-		$info_query =  "SELECT business_name, address, address2, city, state, zip FROM business WHERE business_id='".$_SESSION['business_id']."'"; 
+		$info_query =  "SELECT business_name, address, address2, city, state, zip FROM business WHERE business_id='".$_SESSION['business_id']."'";
 		$info_result = mysqli_query($conn, $info_query);
 		$bar_info = mysqli_fetch_array($info_result);
 		$barName = htmlspecialchars($_POST['business_name']);
@@ -29,5 +32,6 @@
 		$zip_result_query =  mysqli_query($conn, $update_zip_query);
 
 	}
+	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
-?>	
+?>

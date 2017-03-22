@@ -1,8 +1,12 @@
 <?php
 	include "../dbcreds.php";
 	session_start();
+	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+		header('Location: business-login.php');
+	}
+
 	if(htmlspecialchars($_POST['submit']) == "Add Table") //if update table password
-	{	
+	{
 		$check_query = "SELECT count(*) FROM tables WHERE business_id='".$_SESSION['business_id']."' AND table_num = '".htmlspecialchars($_POST['table_number'])."'";
 		$check_result = mysqli_query($conn, $check_query);
 		$check = mysqli_fetch_array($check_result);
@@ -13,7 +17,7 @@
 		else
 		{
 			echo "table ".htmlspecialchars($_POST['table_number'])." doesn't exist";
-			
+
 			if(htmlspecialchars($_POST['new_password']) == htmlspecialchars($_POST['new_password_2']))
 			{
 				echo "<br> Passwords Match";
@@ -34,7 +38,7 @@
 					$add = mysqli_fetch_array($add_result);
 
 				}
-				else 
+				else
 					echo "<br> Password Hash Error.";
 			}
 			else
@@ -44,5 +48,6 @@
 
 		}
 	}
+	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
