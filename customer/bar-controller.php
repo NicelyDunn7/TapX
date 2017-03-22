@@ -1,8 +1,8 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	if($_POST['submit'] == "bar")
 	{
-		include "../dbcreds.php";  
+		include "../dbcreds.php";
 		$i = 0;
 		$query = "SELECT * FROM businesses WHERE state=? AND city=? ORDER BY business_name";
 		$stmt = mysqli_stmt_init($conn);
@@ -51,7 +51,7 @@
 			$_SESSION['address2'] = $address2_final;
 			$_SESSION['city'] = $city_final;
 			$_SESSION['state'] = $state_final;
-			$_SESSION['zip'] = $zip_final;		
+			$_SESSION['zip'] = $zip_final;
 
 			mysqli_stmt_close($stmt);
 			header('Location: home.php');
@@ -62,6 +62,7 @@
 
 
 		}
+		mysqli_close($conn);
 	}
 	else if($_POST['submit'] == "login")
 	{

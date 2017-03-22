@@ -1,34 +1,43 @@
 <?php
-	session_start();
+	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+		header('Location: home.php');
+	}
 	include '../dbcreds.php';
 	echo "
 		<script src='../jquery-3.1.1.js'></script>
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = 'ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php';
-				var ws = new WebSocket(addr);
 				var msg;
+				var addr = 'ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/TapX/websocket.php';
+				var ws = new WebSocket(addr);
 				ws.onopen = function(ev) { // connection is open
-		
+
 	";
 
 
 	//query to find the right drinks for the current bar
-	$row_query = "SELECT * FROM item_list WHERE business_id='".$_SESSION['business_id']."'";
+	$row_query = "SELECT * FROM item_list WHERE business_id='".$_COOKIE['business_id']."'";
 	$row_result = mysqli_query($conn, $row_query);
 	$row = mysqli_fetch_assoc($row_result);
 
 	$item_list = array();
-	$cookie_string = array();
+	$price_string = array();
+	$quanity_string = array();
 	if(isset($_COOKIE['tab']))
 	{
-		foreach (json_decode($_COOKIE['tab']) as $key => $value) {
-			$cookie_string[$key] += $value;
+		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
+			$quantity_string[$name] += $quantity;
 		}
 	}
-	foreach($_POST as $key => $value){
-		if($value != ''  && $value != '0'){
+	if(isset($_COOKIE['tab_price']))
+	{
+		foreach (json_decode($_COOKIE['tab_price']) as $name => $price) {
+			$price_string[$name] += $price;
+		}
+	}
+	foreach($_POST as $name => $quantity){
+		if($quantity != ''  && $quantity > 0){
 			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
 			// $price = $row[$key] * $value;
 
@@ -36,9 +45,9 @@
 			// 	$totalPrice += $price;
 			// }
 
-			$cookie_string[$key] += $value;
-			
-			
+			$quantity_string[$name] += $quantity;
+			$price_string[$name] += $row[$name] * $quantity;
+
 
 			//echo " bringing your total to: $";
 			//echo $totalPrice;
@@ -49,17 +58,17 @@
 				business_id: ".$_COOKIE['business_id'].",
 				type: \"order\",
 				table_id: ".$_COOKIE['table_id'].",
-				quantity: ".$value.",
-				item: \"".$key."\"
+				quantity: ".$quantity.",
+				item: \"".$name."\"
 							};
-						   ws.send(JSON.stringify(msg));
-						   alert('Waitress notified...');
-		";
+				   ws.send(JSON.stringify(msg));
+				";
 		}
     }
 
-    setcookie('tab', json_encode($cookie_string));
-    header('Location: cust-order-form.php');
+    setcookie('tab', json_encode($quantity_string));
+	setcookie('tab_price', json_encode($price_string));
+    //header('Location: cust-order-form.php');
 	//print_r($item_list);
 
 	//echo "<br><br><br>";
@@ -68,7 +77,9 @@
 
 
 echo "
-				window.location = 'cust-order-form.php';
+				setTimeout(function(){
+					window.location = 'cust-order-form.php';
+				}, 2000);
 				}
 				ws.onerror	= function(ev){
 					if(window.console) console.log('Error Occured: ' + ev.data);
@@ -80,4 +91,6 @@ echo "
 			});
 		</script>
 	";
+	mysqli_close($conn);
 ?>
+<!-- <a href="cust-order-form.php">Link</a> -->
