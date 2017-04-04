@@ -10,9 +10,9 @@
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="stylesheet" href="../bootstrap.min.css">
-	    <script src="../jquery.min.js"></script>
-	    <script src="../bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
 		</style>
 	</head>
@@ -67,7 +67,6 @@
 										echo "<tr>";
 											echo "<td width = '70%'> "; print_r($column['Field']); echo " </td>";
 											echo "<td width = '20%'> "; echo "$"; print_r($row[$column['Field']]); echo "</td>";
-									//echo "<td width = '20%' name = '". $row[$column['Field']] ."'></td>";
 											echo "<td width = '10%'><input class='form-control text-input' type='number' min =0 placeholder = '0' name = '" . $column['Field'] . "' value='". $row['drink_quantity'] . "'> </td>";
 
 										echo "</tr>";
@@ -78,10 +77,9 @@
 						mysqli_close($conn);
 						echo "</table>";
 
-						//echo "<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>";
-						//echo " <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>	";
 					?>
 					<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>
+					<a class='btn btn-info btn-lg' href='tab.php'>View Tab</a>
                     <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>
 				</form>
 			</div>
