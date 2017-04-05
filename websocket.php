@@ -1,3 +1,4 @@
+<meta default-src * 'self' 'unsafe-inline' 'unsafe-eval' 127.0.0.1:* http://35.167.112.130:* wss://35.167.112.130:* ws://35.167.112.130:* https://*.duckdns.org wss://*.duckdns.org:* ws://*.duckdns.org:*;>
 <?php
 $host = 'localhost'; //host
 $port = '9998'; //port
@@ -171,11 +172,11 @@ function perform_handshaking($receved_header,$client_conn, $host, $port)
 	$secKey = $headers['Sec-WebSocket-Key'];
 	$secAccept = base64_encode(pack('H*', sha1($secKey . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11')));
 	//hand shaking header
-	$upgrade  = "HTTP/1.1 101 Web Socket Protocol Handshake\n" .
-	"Upgrade: websocket\n" .
-	"Connection: Upgrade\n" .
-	"WebSocket-Origin: $host\n" .
-	"WebSocket-Location: ws://$host:$port/demo/shout.php\n".
-	"Sec-WebSocket-Accept:$secAccept\n\n";
+	$upgrade  = "HTTP/1.1 101 Web Socket Protocol Handshake\r\n" .
+	"Upgrade: websocket\r\n" .
+	"Connection: Upgrade\r\n" .
+	"WebSocket-Origin: $host\r\n" .
+	"WebSocket-Location: ws://$host:$port/websocket.php\r\n".
+	"Sec-WebSocket-Accept:$secAccept\r\n\n";
 	socket_write($client_conn,$upgrade,strlen($upgrade));
 }
