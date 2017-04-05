@@ -15,6 +15,19 @@
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
 		</style>
+		
+		<script>
+			function clickedCloseTab()
+			{
+				var user_choice = window.confirm('Are you sure you want to close your tab?');
+				if(user_choice==true) {
+					document.location.href = "close-tab.php"; 
+				} else {
+					return false;
+				}
+			}
+		</script>
+		
 	</head>
 	<body>
 		<div class="container">
@@ -81,6 +94,9 @@
 					<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>
 					<a class='btn btn-info btn-lg' href='tab.php'>View Tab</a>
                     <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>
+					
+					<!-- close tab after confirm -->
+					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab'>Close Tab </a>
 				</form>
 			</div>
 		</div>
