@@ -1,4 +1,3 @@
-<meta default-src * 'self' 'unsafe-inline' 'unsafe-eval' 127.0.0.1:* http://35.167.112.130:* wss://35.167.112.130:* ws://35.167.112.130:* https://*.duckdns.org wss://*.duckdns.org:* ws://*.duckdns.org:*;>
 <?php
 $host = 'localhost'; //host
 $port = '9998'; //port
@@ -177,6 +176,6 @@ function perform_handshaking($receved_header,$client_conn, $host, $port)
 	"Connection: Upgrade\r\n" .
 	"WebSocket-Origin: $host\r\n" .
 	"WebSocket-Location: ws://$host:$port/websocket.php\r\n".
-	"Sec-WebSocket-Accept:$secAccept\r\n\n";
+	"Sec-WebSocket-Accept:$secAccept\r\n\r\n";
 	socket_write($client_conn,$upgrade,strlen($upgrade));
 }
