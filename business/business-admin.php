@@ -12,41 +12,45 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<link rel="stylesheet" type="text/css" href="./css/business-admin.css">
 	</head>
 	<body>
-		<div class="container">
-			<div class="col-md-12">
-				<div id="barName">
-				<?php  
+		<div class="col-md-12">
+			<div id="barName">
+  				<?php  
 					$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
 					$_SESSION['business_name'] = $bar[0];
-					echo "<h1>Welcome " .$_SESSION['business_name']. "</h1>";
+					echo "<h1>Welcome " .$_SESSION['business_name']. "<img src='../img/TapXLogo.png' alt='TapX' style='width:150px;height:120px;'></h1>";
 				?>
-				</div>
 			</div>
-			<div class="col-md-12" id="buttonGroup">
-				<div class="row">
-					<!-- <h2>Click here to modify your tables!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to modify your tables!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your information or update your information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#infoModal">Modify Info</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your login information or update your login information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#loginModal">Modify Admin Login</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your login information or update your login information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
+		</div>
+		<div class="container">
+			<div class="col-md-12" id="buttonGroups">
+				<div id="addButtonGroup">
+					<div class="row">
+						<!-- <h2>Click here to modify your tables!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
+					</div>
+					<div class="row">
+						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
+					</div>
+				</div>	
+				<div id="modifyButtonGroup">
+					<div class="row">
+						<!-- <h2>Click here to add your information or update your information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#infoModal">Modify Info</button>
+					</div>
+					<div class="row">
+						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#loginModal">Modify Admin Login</button>
+					</div>
+					<div class="row">
+						<!-- <h2>Click here to modify your tables!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -191,7 +195,5 @@
 				</div>
 			</div>
 		</div>
-		<script>
-		</script>
 	</body>
 </html>	

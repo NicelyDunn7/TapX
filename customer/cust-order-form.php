@@ -9,14 +9,17 @@
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="./css/navbar.css" type="text/css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style type="text/css">
-			<!-- WHERE CSS STARTED -->	
 		</style>
 	</head>
 	<body>
-		<div class="container">
+		<?php 
+			include 'navbar.html';
+		?>
+		<div class="container" id="content">
 			<div class="col-xs-12">
 				<div id="barName">
 					<!-- <h1>Bar Name Here</h1> --> 
@@ -87,5 +90,17 @@
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function openNav() {
+			    document.getElementById("mySidenav").style.width = "100px";
+			    document.getElementById("content").style.marginLeft = "100px";
+			}
+
+			/* Set the width of the side navigation to 0 */
+			function closeNav() {
+			    document.getElementById("mySidenav").style.width = "0";
+			    document.getElementById("content").style.marginLeft = "0";
+			}
+		</script>>
 	</body>
 </html>	
