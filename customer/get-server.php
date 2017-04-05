@@ -10,7 +10,7 @@
         <script language="javascript" type="text/javascript">
             $(document).ready(function(){
                 //Create new websocket
-				var addr = 'ws://ec2-52-87-94-24.compute-1.amazonaws.com:9998/TapX/websocket.php';
+				var addr = 'ws://ec2-54-202-88-8.us-west-2.compute.amazonaws.com:9998/websocket.php'
                 var ws = new WebSocket(addr);
                 //Open connection, send message to notify server a customer has connected
                 ws.onopen = function(ev) { // connection is open

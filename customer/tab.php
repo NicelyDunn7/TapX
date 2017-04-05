@@ -58,10 +58,10 @@
 		}
 	}*/
 
-	if(isset($_COOKIE['tab']))	///TAB IS LINKED TO QUANTITY OF DRINK
+	if(isset($_COOKIE['tab'],$_COOKIE['tab_price']))	///TAB IS LINKED TO QUANTITY OF DRINK
 	{
 		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
-			echo $name . " at quantity of " . $quantity;
+			echo  $name . " at quantity of " . $quantity;
 			echo "<br>";
 			//echo $price;
 			//echo "<br>";
@@ -79,6 +79,8 @@
 			$tabPriceCount++;
 		}
 	}
+
+
 	echo "<br><br>";
 	/*
 	foreach(json_decode($_COOKIE['tab']) as $name => $quantity){
@@ -91,6 +93,11 @@
 	echo "Total Price for your tab = $" . number_format($totalPrice, 2);
 
 
+
 	echo "<br><br><br><br><br><br>";
 	echo "<a class='btn btn-success btn-lg' href='cust-order-form.php'>Return To Order!</a>";
+    echo "<br><br><br>";
+    echo "<a class='btn btn-danger btn-lg' href='close_tab.php'>Close Tab</a>";
+
+
 ?>

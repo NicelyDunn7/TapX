@@ -9,7 +9,8 @@
 			$(document).ready(function(){
 				//Create new websocket
 				var msg;
-				var addr = 'ws://ec2-52-87-94-24.compute-1.amazonaws.com:9998/TapX/websocket.php';
+				//var close;
+				var addr = 'ws://ec2-54-202-88-8.us-west-2.compute.amazonaws.com:9998/websocket.php'
 				var ws = new WebSocket(addr);
 				ws.onopen = function(ev) { // connection is open
 	";
@@ -20,6 +21,7 @@
 	$item_list = array();
 	$price_string = array();
 	$quanity_string = array();
+	//$close_string = array();
 	if(isset($_COOKIE['tab']))
 	{
 		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
@@ -32,10 +34,17 @@
 			$price_string[$name] += $price;
 		}
 	}
+/*	if(isset($_COOKIE['close_tab']))
+	{
+		foreach (json_decode($_COOKIE['close_tab']) as $name => $close) {
+			$close_string[$name] += $close;
+		}
+	}*/
 	foreach($_POST as $name => $quantity){
 		if($quantity != ''  && $quantity > 0){
 			$quantity_string[$name] += $quantity;
 			$price_string[$name] += $row[$name] * $quantity;
+			//$close_string[$name] =
 			echo "
 			msg = {
 				business_id: ".$_COOKIE['business_id'].",
@@ -46,10 +55,22 @@
 							};
 				   ws.send(JSON.stringify(msg));
 				";
+	/*		echo "
+			close = {
+				business_id: ".$_COOKIE['business_id'].",
+				type: \"order\",
+				table_id: ".$_COOKIE['table_id'].",
+				quantity: ".$quantity.",
+				item: \"".$name."\"
+								};
+					   ws.send(JSON.stringify(msg));
+					";*/
 		}
     }
     setcookie('tab', json_encode($quantity_string), time() + 36000, '/');	// '/' means cookie is available on entire site
 	setcookie('tab_price', json_encode($price_string), time() + 36000, '/');
+	setcookie('close_tab', json_encode($close_string), time() + 36000, '/');
+
 echo "
 				setTimeout(function(){
 					window.location = 'cust-order-form.php';
