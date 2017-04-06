@@ -8,11 +8,11 @@
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = 'ws://ec2-52-87-94-24.compute-1.amazonaws.com:9998/TapX/websocket.php';
+				var addr = 'ws://tapx.duckdns.org:9998/websocket.php';
 				var ws = new WebSocket(addr);
 				//Open connection, send message to notify server a customer has connected
 				ws.onopen = function(ev) { // connection is open
-					var close = {  
+					var close = {
 						business_id: " . $_COOKIE['business_id'] . ",
 						type: \"close\",
 						name: \"" . $_COOKIE['user_name'] . "\",
@@ -22,19 +22,22 @@
 					};
 					ws.send(JSON.stringify(close));
 					if(window.console) console.log('Connected to Server.');
+					setTimeout(function(){
+						window.location.assign('home.php');
+					}, 2000);
 				}
+			});
 	    </script>
 
 	";
-	
-	
+
 	if (isset($_COOKIE['business_id'])) {
-		setcookie('business_id', "", time()-3600);
-		setcookie('table_id', "", time()-3600);
-		setcookie('tab', "", time()-3600, '/');
-		setcookie('tab_price', "", time()-3600, '/');
-		setcookie('user_name', "", time()-3600);
+		setcookie('business_id', "", time()-3600, "/");
+		setcookie('table_id', "", time()-3600, "/");
+		setcookie('tab', "", time()-3600, "/");
+		setcookie('tab_price', "", time()-3600, "/");
+		setcookie('user_name', "", time()-3600, "/");
 	}
-	
-	header('Location: cust-order-form.php');
+
+	//header('Location: cust-order-form.php');
  ?>

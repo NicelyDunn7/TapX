@@ -21,12 +21,10 @@
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
-				alert('In Document Ready');
 				var msg;
 				var addr = 'ws://tapx.duckdns.org:9998/websocket.php';
 				var ws = new WebSocket(addr);
 				ws.onopen = function(ev) { // connection is open
-				alert('In On Open Function');
 	";
 
 
