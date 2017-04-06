@@ -7,28 +7,29 @@
 
 	echo "Current Tab<br><br>";
 
-	if(isset($_COOKIE['tab']))	///TAB IS LINKED TO QUANTITY OF DRINK
+	if(isset($_COOKIE['tab']) && isset($_COOKIE['tab_price']))	///TAB IS LINKED TO QUANTITY OF DRINK
 	{
 		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
-			echo $name . " at quantity of " . $quantity;
+			echo $quantity . "  " . $name;
+			foreach(json_decode($_COOKIE['tab_price']) as $pname => $price)
+			{
+				if($name == $pname) {
+					echo " for a total of $" . $price;
+				}
+				
+			}
 			echo "<br>";
-
-			$tabCount++;
 		}
 	}
-	echo "<br><br>";
+
 	if(isset($_COOKIE['tab_price'])) 	///TAB PRICE IS PRICE OF QUANTITY OF DRINKS
 	{
 		foreach (json_decode($_COOKIE['tab_price']) as $name => $price) {
-			//echo $_COOKIE['tab_price'];
-			echo $name . " is a total of $" . $price;
 			echo "<br>";
 			$totalPrice += $price;
-			$tabPriceCount++;
 		}
-
 	}
-	echo "<br><br>";	
+
 	echo "<br><br><br>";
 	echo "Total Price for your tab = $" . number_format($totalPrice, 2);
 	

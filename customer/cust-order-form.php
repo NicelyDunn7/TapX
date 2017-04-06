@@ -96,7 +96,7 @@
                     <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>
 					
 					<!-- close tab after confirm -->
-					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab'>Close Tab </a>
+					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a>
 				</form>
 			</div>
 		</div>
