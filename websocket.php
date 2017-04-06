@@ -55,10 +55,31 @@ while (true) {
 			// print_r($tst_msg);
 			$user_business_id = $tst_msg->business_id; //business sender is at
 			$user_type = $tst_msg->type; //type of message (order or get or close)
-			$user_name = $tst_msg->name; //sender's name
-			$user_table_id = $tst_msg->table_id; //sender table
-			$user_quantity = $tst_msg->quantity;
-			$user_item = $tst_msg->item; //message text
+			if ($user_type == 'business'){
+				array_push($businesses, array('business_id'=>$user_business_id, 'socket'=>$changed_socket));
+			} else if ($user_type == 'summon'){
+				$user_name = $tst_msg->name;
+				$user_table_id = $tst_msg->table_id;
+				$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id)));
+				send_message($response_text, $user_business_id); //send data
+			} else if ($user_type == 'close'){
+				$user_name = $tst_msg->name;
+				$user_table_id = $tst_msg->table_id;
+				$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id)));
+				send_message($response_text, $user_business_id); //send data
+			} else if ($user_type == 'order'){
+				$user_name = $tst_msg->name; //sender's name
+				$user_table_id = $tst_msg->table_id; //sender table
+				$user_quantity = $tst_msg->quantity;
+				$user_item = $tst_msg->item; //message text
+				$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
+				send_message($response_text, $user_business_id); //send data
+			}
+
+			// $user_name = $tst_msg->name; //sender's name
+			// $user_table_id = $tst_msg->table_id; //sender table
+			// $user_quantity = $tst_msg->quantity;
+			// $user_item = $tst_msg->item; //message text
 			// print("Business ID: ".$user_business_id);
 			// print("\nUser Type: ".$user_type);
 			// print("\nTable ID: ".$user_table_id);
@@ -66,16 +87,16 @@ while (true) {
 			// print("\nItem: ".$user_item."\n");
 
 			//Add new business to businessses arrary with socket and business_id for sending
-			if ($user_type == 'customer'){
-				print("I'm a customer\n");
-			} else if ($user_type == 'business'){
-				array_push($businesses, array('business_id'=>$user_business_id, 'socket'=>$changed_socket));
-			}
+			// if ($user_type == 'customer'){
+			// 	print("I'm a customer\n");
+			// } else if ($user_type == 'business'){
+			// 	array_push($businesses, array('business_id'=>$user_business_id, 'socket'=>$changed_socket));
+			// }
 
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
-			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
-			send_message($response_text, $user_business_id); //send data
+			//$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
+			//send_message($response_text, $user_business_id); //send data
 			break 2; //exit this loop
 		}
 
