@@ -4,12 +4,12 @@
 	}
 	include '../dbcreds.php';
 	echo "
-		<script src='../jquery-3.1.1.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 		<script language='javascript' type='text/javascript'>
 			$(document).ready(function(){
 				//Create new websocket
 				var msg;
-				var addr = 'ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/TapX/websocket.php';
+				var addr = 'ws://ec2-52-87-94-24.compute-1.amazonaws.com:9998/TapX/websocket.php';
 				var ws = new WebSocket(addr);
 				ws.onopen = function(ev) { // connection is open
 
@@ -38,21 +38,10 @@
 	}
 	foreach($_POST as $name => $quantity){
 		if($quantity != ''  && $quantity > 0){
-			//echo "You have ordered ".$value. " ". $key . " at $".$row[$key]. " each";
-			// $price = $row[$key] * $value;
-
-			// if($price != 0){
-			// 	$totalPrice += $price;
-			// }
 
 			$quantity_string[$name] += $quantity;
 			$price_string[$name] += $row[$name] * $quantity;
 
-
-			//echo " bringing your total to: $";
-			//echo $totalPrice;
-			//echo "<br><br>";
-			//array_push($item_list, array('item'=>$key, 'quantity'=>$value));
 			echo "
 			msg = {
 				business_id: ".$_COOKIE['business_id'].",
@@ -66,14 +55,8 @@
 		}
     }
 
-    setcookie('tab', json_encode($quantity_string));
-	setcookie('tab_price', json_encode($price_string));
-    //header('Location: cust-order-form.php');
-	//print_r($item_list);
-
-	//echo "<br><br><br>";
-	//echo "Your total is $";
-	//echo $totalPrice;
+    setcookie('tab', json_encode($quantity_string), time() + 36000, '/');	// '/' means cookie is available on entire site
+	setcookie('tab_price', json_encode($price_string), time() + 36000, '/');
 
 
 echo "
@@ -93,4 +76,3 @@ echo "
 	";
 	mysqli_close($conn);
 ?>
-<!-- <a href="cust-order-form.php">Link</a> -->
