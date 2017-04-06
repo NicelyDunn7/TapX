@@ -51,16 +51,18 @@ while (true) {
 		{
 			$received_text = unmask($buf); //unmask data
 			$tst_msg = json_decode($received_text); //json decode
+			// print("Test Message:" . $received_text . "\n");
+			// print_r($tst_msg);
 			$user_business_id = $tst_msg->business_id; //business sender is at
 			$user_type = $tst_msg->type; //type of message (order or get or close)
 			$user_table_id = $tst_msg->table_id; //sender table
 			$user_quantity = $tst_msg->quantity;
 			$user_item = $tst_msg->item; //message text
-			print("Business ID: ".$user_business_id);
-			print("\nUser Type: ".$user_type);
-			print("\nTable ID: ".$user_table_id);
-			print("\nQuantity: ".$user_quantity);
-			print("\nItem: ".$user_item);
+			// print("Business ID: ".$user_business_id);
+			// print("\nUser Type: ".$user_type);
+			// print("\nTable ID: ".$user_table_id);
+			// print("\nQuantity: ".$user_quantity);
+			// print("\nItem: ".$user_item."\n");
 
 			//Add new business to businessses arrary with socket and business_id for sending
 			if ($user_type == 'customer'){

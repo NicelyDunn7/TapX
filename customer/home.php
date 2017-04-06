@@ -2,15 +2,15 @@
 <html>
 	 <?php session_start()
 
-	?> 
+	?>
 	<head>
 		<title>Home Page</title>
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="../bootstrap.min.css">
+	    <script src="../jquery.min.js"></script>
+	    <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
 			.container{
 				margin: 0 auto;
@@ -47,12 +47,12 @@
 			<div class="col-xs-12">
 				<form action="./bar-controller.php" method="post" id="bar-controller" >
 					<!-- these two inputs are here to serve as the post targets for this form -->
-   					 <input class="span2" id="state_input" name="state_input" type="hidden"> 
+   					 <input class="span2" id="state_input" name="state_input" type="hidden">
    					 <input class="span2" id="city_input" name="city_input" type="hidden">
-					<div class="dropdown-container">	
+					<div class="dropdown-container">
 						<button type="button" class="btn btn-primary dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
-						<ul class="dropdown-menu" id="stateDropdown" role="menu">						
-							<?php 
+						<ul class="dropdown-menu" id="stateDropdown" role="menu">
+							<?php
 								include "./state-controller.php";
 								// print_r($_SESSION['states']);
 								// foreach ($_SESSION['states'] as $s => $v)
@@ -64,7 +64,7 @@
 								 	// echo ;
 								 	// echo ;
 								}
-											
+
 							?>
 
 						</ul>
@@ -78,9 +78,9 @@
 								{
 								 	echo "<li onclick=\"$('#city_input').val('" . $_SESSION['cities'][$i] . "'); \"><a href='#'>" . $_SESSION['cities'][$i] . "</a></li>";
 								}
-							?> 
-							
-						</ul>					
+							?>
+
+						</ul>
 					</div>
 					<div class="row">
 						<button class="btn btn-primary" type="submit" onclick="myFunction" name="submit" value="bar" id="barMenu">Bar</button>
@@ -91,7 +91,7 @@
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
 								// echo "<option value = ";
-								
+
 								// echo ">";
 
 								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
@@ -116,7 +116,7 @@
 							}
 						?>
 						</select>
-					</div> 
+					</div>
 					<div class="row">
 						<button class="btn btn-default" type="submit" name="submit" value="login" id="go-to-login">Go to Login</button>
 					</div>
@@ -165,4 +165,4 @@
 		    // }
 		// });
 	</script>
-</html>	
+</html>
