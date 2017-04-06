@@ -16,22 +16,22 @@
 	  <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
 		</style>
-		
+
 		<script>
 			function clickedCloseTab()
 			{
 				var user_choice = window.confirm('Are you sure you want to close your tab?');
 				if(user_choice==true) {
-					document.location.href = "close-tab.php"; 
+					document.location.href = "close-tab.php";
 				} else {
 					return false;
 				}
 			}
 		</script>
-		
+
 	</head>
 	<body>
-		<?php 
+		<?php
 			include 'navbar.html';
 		?>
 		<div class="container" id="content">
@@ -97,8 +97,7 @@
 					?>
 					<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>
 					<a class='btn btn-info btn-lg' href='tab.php'>View Tab</a>
-                    <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>
-					
+
 					<!-- close tab after confirm -->
 					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a>
 				</form>
