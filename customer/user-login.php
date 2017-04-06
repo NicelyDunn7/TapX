@@ -5,7 +5,9 @@
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>User Login</title>
-		<link rel="stylesheet" href="../bootstrap.min.css">
+	  <link rel="stylesheet" href="../bootstrap.min.css">
+	  <script src="../jquery.min.js"></script>
+	  <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
 			.jumbotron{
 				height: 100vh;
