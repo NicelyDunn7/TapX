@@ -55,6 +55,7 @@ while (true) {
 			// print_r($tst_msg);
 			$user_business_id = $tst_msg->business_id; //business sender is at
 			$user_type = $tst_msg->type; //type of message (order or get or close)
+			$user_name = $tst_msg->name; //sender's name
 			$user_table_id = $tst_msg->table_id; //sender table
 			$user_quantity = $tst_msg->quantity;
 			$user_item = $tst_msg->item; //message text
@@ -73,7 +74,7 @@ while (true) {
 
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
-			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
+			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
 			send_message($response_text, $user_business_id); //send data
 			break 2; //exit this loop
 		}
@@ -171,11 +172,11 @@ function perform_handshaking($receved_header,$client_conn, $host, $port)
 	$secKey = $headers['Sec-WebSocket-Key'];
 	$secAccept = base64_encode(pack('H*', sha1($secKey . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11')));
 	//hand shaking header
-	$upgrade  = "HTTP/1.1 101 Web Socket Protocol Handshake\n" .
-	"Upgrade: websocket\n" .
-	"Connection: Upgrade\n" .
-	"WebSocket-Origin: $host\n" .
-	"WebSocket-Location: ws://$host:$port/demo/shout.php\n".
-	"Sec-WebSocket-Accept:$secAccept\n\n";
+	$upgrade  = "HTTP/1.1 101 Web Socket Protocol Handshake\r\n" .
+	"Upgrade: websocket\r\n" .
+	"Connection: Upgrade\r\n" .
+	"WebSocket-Origin: $host\r\n" .
+	"WebSocket-Location: ws://$host:$port/websocket.php\r\n".
+	"Sec-WebSocket-Accept:$secAccept\r\n\r\n";
 	socket_write($client_conn,$upgrade,strlen($upgrade));
 }
