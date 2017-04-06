@@ -90,6 +90,11 @@
 						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
 						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
 					}
+					if(type=="close"){
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).append("<p>"+name+" Wants to Close Their Tab</p>");
+						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
+					}
 				}
 
 				ws.onerror	= function(ev){
