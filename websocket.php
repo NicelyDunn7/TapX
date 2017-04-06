@@ -55,6 +55,7 @@ while (true) {
 			// print_r($tst_msg);
 			$user_business_id = $tst_msg->business_id; //business sender is at
 			$user_type = $tst_msg->type; //type of message (order or get or close)
+			$user_name = $tst_msg->name; //sender's name
 			$user_table_id = $tst_msg->table_id; //sender table
 			$user_quantity = $tst_msg->quantity;
 			$user_item = $tst_msg->item; //message text
@@ -73,7 +74,7 @@ while (true) {
 
 			//prepare data to be sent to client
 			//$response_text = mask(json_encode(array('type'=>'usermsg', 'name'=>$user_name, 'message'=>$user_message, 'color'=>$user_color)));
-			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
+			$response_text = mask(json_encode(array('business_id'=>$user_business_id, 'type'=>$user_type, 'name'=>$user_name, 'table_id'=>$user_table_id, 'quantity'=>$user_quantity, 'item'=>$user_item)));
 			send_message($response_text, $user_business_id); //send data
 			break 2; //exit this loop
 		}

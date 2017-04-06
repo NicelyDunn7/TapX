@@ -71,6 +71,7 @@
 			msg = {
 				business_id: ".$_COOKIE['business_id'].",
 				type: \"order\",
+				name: \"".$_COOKIE['user_name']."\",
 				table_id: ".$_COOKIE['table_id'].",
 				quantity: ".$quantity.",
 				item: \"".$name."\"
@@ -80,8 +81,8 @@
 		}
     }
 
-    setcookie('tab', json_encode($quantity_string));
-	setcookie('tab_price', json_encode($price_string));
+    setcookie('tab', json_encode($quantity_string), time()+43200, "/");
+	setcookie('tab_price', json_encode($price_string), time()+43200, "/");
     //header('Location: cust-order-form.php');
 	//print_r($item_list);
 

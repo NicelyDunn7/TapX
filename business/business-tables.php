@@ -54,6 +54,7 @@
 					var msg = {
 						business_id: "<?php echo $_SESSION['business_id']; ?>",
 						type: "business",
+						name: "NULL",
 						table_id: "NULL",
 						quantity: "NULL",
 						item: "NULL"
@@ -67,23 +68,27 @@
 					var msg = JSON.parse(ev.data); //PHP sends Json data
 					var business_id = msg.business_id;
 					var type = msg.type;
+					var name = msg.name;
 					var table_id = msg.table_id;
 					var quantity = msg.quantity;
 					var item = msg.item;
 
 					if(window.console) console.log('Business ID: ' + business_id);
 					if(window.console) console.log('Type: ' + type);
+					if(window.console) console.log('Name: ' + name);
 					if(window.console) console.log('Table ID: ' + table_id);
 					if(window.console) console.log('Quantity: ' + quantity);
 					if(window.console) console.log('Item: ' + item);
 					if(type == 'summon'){
-						alert("Server requested at table " + table_id);
+						alert(name + " Requested a Server at Table " + table_id);
+						//alert("Server requested at table " + table_id);
 						document.getElementById(table_id).style.background = "red";
 						$("#body" + table_id).prepend("<p>Server Requested!</p>");
 					}
 					if(type=="order"){
 						document.getElementById(table_id).style.background = "red";
-						$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
+						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
+						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
 					}
 				}
 
