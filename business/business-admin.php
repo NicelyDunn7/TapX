@@ -12,7 +12,7 @@
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="../bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/business-admin.css">
 		<script src="../jquery.min.js"></script>
 		<script src="../bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -26,9 +26,8 @@
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
 					$_SESSION['business_name'] = $bar[0];
-					echo "<h1>Welcome " .$_SESSION['business_name']. "</h1>";
+					echo "<h1>Welcome " .$_SESSION['business_name']. "<img src='../img/TapXLogo.png' alt='TapX' style='width:150px;height:120px;'></h1>";
 				?>
-				</div>
 			</div>
 			<div class="col-md-12" id="buttonGroup">
 				<div class="row">
@@ -282,5 +281,6 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</body>
 </html>

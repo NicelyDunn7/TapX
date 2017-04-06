@@ -10,14 +10,31 @@
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="stylesheet" href="../bootstrap.min.css">
-	    <script src="../jquery.min.js"></script>
-	    <script src="../bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="./css/navbar.css" type="text/css">
+	  <link rel="stylesheet" href="../bootstrap.min.css">
+	  <script src="../jquery.min.js"></script>
+	  <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
 		</style>
+		
+		<script>
+			function clickedCloseTab()
+			{
+				var user_choice = window.confirm('Are you sure you want to close your tab?');
+				if(user_choice==true) {
+					document.location.href = "close-tab.php"; 
+				} else {
+					return false;
+				}
+			}
+		</script>
+		
 	</head>
 	<body>
-		<div class="container">
+		<?php 
+			include 'navbar.html';
+		?>
+		<div class="container" id="content">
 			<div class="col-xs-12">
 				<div id="barName">
 					<!-- <h1>Bar Name Here</h1> -->
@@ -67,7 +84,6 @@
 										echo "<tr>";
 											echo "<td width = '70%'> "; print_r($column['Field']); echo " </td>";
 											echo "<td width = '20%'> "; echo "$"; print_r($row[$column['Field']]); echo "</td>";
-									//echo "<td width = '20%' name = '". $row[$column['Field']] ."'></td>";
 											echo "<td width = '10%'><input class='form-control text-input' type='number' min =0 placeholder = '0' name = '" . $column['Field'] . "' value='". $row['drink_quantity'] . "'> </td>";
 
 										echo "</tr>";
@@ -78,13 +94,27 @@
 						mysqli_close($conn);
 						echo "</table>";
 
-						//echo "<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>";
-						//echo " <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>	";
 					?>
 					<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>
+					<a class='btn btn-info btn-lg' href='tab.php'>View Tab</a>
                     <a class='btn btn-success btn-lg' href='home.php'>Cancel</a>
+					
+					<!-- close tab after confirm -->
+					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a>
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function openNav() {
+			    document.getElementById("mySidenav").style.width = "100px";
+			    document.getElementById("content").style.marginLeft = "100px";
+			}
+
+			/* Set the width of the side navigation to 0 */
+			function closeNav() {
+			    document.getElementById("mySidenav").style.width = "0";
+			    document.getElementById("content").style.marginLeft = "0";
+			}
+		</script>>
 	</body>
 </html>

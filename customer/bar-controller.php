@@ -66,7 +66,7 @@
 	}
 	else if($_POST['submit'] == "login")
 	{
-		setcookie('business_id', htmlspecialchars($_POST['selected_bar']));
+		setcookie('business_id', htmlspecialchars($_POST['selected_bar']), time() + 500, "/");
 		header('Location: user-login.php');
 	}
 	else
