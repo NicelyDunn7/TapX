@@ -2,12 +2,12 @@
     session_start();
 
     //Check if the login form was complete, return if not, continue if completed
-    if(empty($_POST['business_id']) == true || empty($_POST['name']) || empty($_POST['table_num']) || empty($_POST['password'])){
+    if(empty($_COOKIE['business_id']) == true || empty($_POST['name']) || empty($_POST['table_num']) || empty($_POST['password'])){
         header('Location: user-login.php');
     } else if(isset($_POST['submit'])){
         //Include database login credentials and store entered business_id and username
         include '../dbcreds.php';
-        $business_id = $_POST['business_id'];
+        $business_id = $_COOKIE['business_id'];
         $user_name = $_POST['name'];
         $table_num = $_POST['table_num'];
         echo "hi";
@@ -23,9 +23,9 @@
             //Set the business_id session variable if matching, error if not
             $saltedpass = $_POST['password'].$salt;
             if(password_verify($saltedpass, $table_pass)){
-                setcookie('business_id', $business_id);
-                setcookie('table_id', $table_id);
-                setcookie('user_name', $user_name);
+                setcookie('business_id', $business_id, time() + 43200, "/");
+                setcookie('table_id', $table_id, time() + 43200, "/");
+                setcookie('user_name', $user_name, time() + 43200, "/");
                 mysqli_close($conn);
                 header('Location: cust-order-form.php');
             } else{
