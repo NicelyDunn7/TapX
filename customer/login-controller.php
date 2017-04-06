@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     //Check if the login form was complete, return if not, continue if completed
     if(empty($_COOKIE['business_id']) == true || empty($_POST['name']) || empty($_POST['table_num']) || empty($_POST['password'])){
         header('Location: user-login.php');
@@ -10,7 +8,6 @@
         $business_id = $_COOKIE['business_id'];
         $user_name = $_POST['name'];
         $table_num = $_POST['table_num'];
-        echo "hi";
         //Select the admin credentials from database based on entered business_id and username
         if($stmt = $conn->prepare("SELECT business_id, table_id, table_num, table_pass, salt FROM tables WHERE business_id=? AND table_num=?")){
             $stmt->bind_param('is', htmlspecialchars($business_id), htmlspecialchars($table_num));

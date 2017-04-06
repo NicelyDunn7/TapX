@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
 <html>
 	<head>
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>User Login</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	  <link rel="stylesheet" href="../bootstrap.min.css">
+	  <script src="../jquery.min.js"></script>
+	  <script src="../bootstrap.min.js"></script>
 		<style type="text/css">
 			.jumbotron{
 				height: 100vh;

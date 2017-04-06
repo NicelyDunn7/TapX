@@ -1,5 +1,8 @@
 <?php
     include '../dbcreds.php';
+    if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
+        header('Location: home.php');
+    }
 
     $query = "SELECT * FROM businesses WHERE business_id=?";
     if($stmt = $conn->prepare($query)){
@@ -9,9 +12,14 @@
         $stmt->fetch();
         $stmt->close();
 
-        echo "<h1>Business Name: " . $business_name;
+        echo "<h1>Business Name: " . $business_name . "</h1>";
         echo "<h3>Address: ".$address." ".$address2."<br>".$city.", ".$state." ".$zip."</h3>";
-        echo "<a href='../menus/".$_COOKIE['business_id'].".pdf'>View PDF Menu</a>";
+        $path = '../menus/'.$_COOKIE['business_id'].'.pdf';
+        if(file_exists($path)){
+            echo "<a href='../menus/".$_COOKIE['business_id'].".pdf'>View PDF Menu</a>";
+        } else {
+            echo "<h4>Encourage your establishment to upload a PDF menu!</h4>";
+        }
 
         mysqli_close($conn);
     } else {

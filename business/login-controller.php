@@ -23,6 +23,8 @@
             $saltedpass = $_POST['password'].$salt;
             if(password_verify($saltedpass, $password)){
                 $_SESSION['business_id'] = $business_id;
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_name'] = $username;
                 mysqli_close($conn);
                 header('Location: business-admin.php');
             } else{

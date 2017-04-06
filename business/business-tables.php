@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php
+	session_start();
+	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
+		header('Location: business-login.php');
+} ?>
 <html>
 	<head>
 		<title>Table Page</title>
 		<!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.mis.js"></script-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../jquery.min.js"></script>
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  <link rel="stylesheet" href="../bootstrap.min.css">
+		  <script src="../jquery.min.js"></script>
+		  <script src="../bootstrap.min.js"></script>
 		<script>
 		/*	$(document).ready(function(createTable){
 				$('.business-tables').click(function(event){
@@ -42,7 +46,7 @@
 		<script language="javascript", type="text/javascript">
 			$(document).ready(function(){
 				//Create new websocket
-				var addr = "ws://ec2-54-174-137-173.compute-1.amazonaws.com:9998/TapX/websocket.php";
+				var addr = "ws:ec2-35-167-112-130.us-west-2.compute.amazonaws.com:9998/websocket.php";
 				var ws = new WebSocket(addr);
 
 				ws.onopen = function(ev) { // connection is open
@@ -50,6 +54,7 @@
 					var msg = {
 						business_id: "<?php echo $_SESSION['business_id']; ?>",
 						type: "business",
+						name: "NULL",
 						table_id: "NULL",
 						quantity: "NULL",
 						item: "NULL"
@@ -63,23 +68,27 @@
 					var msg = JSON.parse(ev.data); //PHP sends Json data
 					var business_id = msg.business_id;
 					var type = msg.type;
+					var name = msg.name;
 					var table_id = msg.table_id;
 					var quantity = msg.quantity;
 					var item = msg.item;
 
 					if(window.console) console.log('Business ID: ' + business_id);
 					if(window.console) console.log('Type: ' + type);
+					if(window.console) console.log('Name: ' + name);
 					if(window.console) console.log('Table ID: ' + table_id);
 					if(window.console) console.log('Quantity: ' + quantity);
 					if(window.console) console.log('Item: ' + item);
 					if(type == 'summon'){
-						alert("Server requested at table " + table_id);
+						alert(name + " Requested a Server at Table " + table_id);
+						//alert("Server requested at table " + table_id);
 						document.getElementById(table_id).style.background = "red";
 						$("#body" + table_id).prepend("<p>Server Requested!</p>");
 					}
 					if(type=="order"){
 						document.getElementById(table_id).style.background = "red";
-						$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
+						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
+						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
 					}
 				}
 
@@ -141,7 +150,7 @@
 
 					//print the name of the bar at the top of the customer order page
 
-				echo "<h1>".$_SESSION['business_name']."</h1>";
+				echo "<a href='business-admin.php'><h1>".$_SESSION['business_name']."</h1></a>";
 				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
 				$table_result = mysqli_query($conn, $table_query);
 
@@ -162,12 +171,12 @@
 					      				</div>
 						      			<div id='body".$row['table_id']."' class='modal-body'>
 
-						      			</div>	
+						      			</div>
 						      			<div class='modal-footer'>
 									        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
 									        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
 									    </div>
-									</div>    
+									</div>
 								</div>
 						   </div>";
 
