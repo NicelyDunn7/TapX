@@ -25,7 +25,9 @@
 							business_id: " . $_COOKIE['business_id'] . ",
 							type: \"close\",
 							name: \"" . $_COOKIE['user_name'] . "\",
-							table_id: " .  $_COOKIE['table_id'] . "
+							table_id: " .  $_COOKIE['table_id'] . ",
+							quantity: \"NULL\",
+							item: \"NULL\"
 						};
 						ws.send(JSON.stringify(close));
 						if(window.console) console.log('Connected to Server.');

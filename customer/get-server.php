@@ -33,7 +33,9 @@
                         business_id: "<?php echo $_COOKIE['business_id']; ?>",
                         type: "summon",
                         name: "<?php echo $_COOKIE['user_name']; ?>",
-                        table_id: "<?php echo $_COOKIE['table_id']; ?>"
+                        table_id: "<?php echo $_COOKIE['table_id']; ?>",
+                        quantity: "NULL",
+                        item: "NULL"
                     };
                    ws.send(JSON.stringify(msg));
                    alert("Waitress notified...");

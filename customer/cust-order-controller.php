@@ -63,7 +63,7 @@
 				quantity: ".$quantity.",
 				item: \"".$name."\"
 							};
-				   ws.send(JSON.stringify(msg));
+			ws.send(JSON.stringify(msg));
 				";
 		}
     }

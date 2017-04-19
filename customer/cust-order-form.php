@@ -42,14 +42,12 @@
 			</div>
 			<div class="col-xs-12">
 
-
 				<!-- Start code for customer order form output -->
 				<form action="cust-order-controller.php" method="post">
 					<?php
 			//echo "<form action='cust-order-controller.php' method='post'>";
 						//start session and include database
 						include '../dbcreds.php';
-		//WORK ON!		include 'cust-order-controller';
 
 						//find the current bar you have currently selected to output on customer order page
 						$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_COOKIE['business_id']."'";
@@ -114,6 +112,6 @@
 			    document.getElementById("mySidenav").style.width = "0";
 			    document.getElementById("content").style.marginLeft = "0";
 			}
-		</script>>
+		</script>
 	</body>
 </html>

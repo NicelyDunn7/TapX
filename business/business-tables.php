@@ -53,7 +53,11 @@
 					//Send message to tell server a business has connected
 					var msg = {
 						business_id: "<?php echo $_SESSION['business_id']; ?>",
-						type: "business"
+						type: "business",
+						name: "NULL",
+						table_id: "NULL",
+						quantity: "NULL",
+						item: "NULL"
 					}
 					ws.send(JSON.stringify(msg));
 					if(window.console) console.log('Connected to Server.');
