@@ -22,13 +22,13 @@
 			{
 				var user_choice = window.confirm('Are you sure you want to close your tab?');
 				if(user_choice==true) {
-					document.location.href = "close-tab.php"; 
+					document.location.href = "close-tab.php";
 				} else {
 					return false;
 				}
 			}
 		</script>
-		
+
 	</head>
 	<body>
 		<?php 
@@ -42,7 +42,6 @@
 			//echo "<form action='cust-order-controller.php' method='post'>";
 						//start session and include database
 						include '../dbcreds.php';
-		//WORK ON!		include 'cust-order-controller';
 
 						//find the current bar you have currently selected to output on customer order page
 						$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_COOKIE['business_id']."'";

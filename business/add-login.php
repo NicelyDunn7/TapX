@@ -4,8 +4,9 @@
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
 		header('Location: business-login.php');
 	}
-
-	if(htmlspecialchars($_POST['submit']) == "Add Admin") //if update admin password
+	if(!isset($_POST['admin_username']) || !isset($_POST['new_password_admin']) || !isset($_POST['new_password_admin_2'])){
+		header('Location: business-admin.php');
+	} else if (htmlspecialchars($_POST['submit']) == "Add Admin") //if update admin password
 	{
 		$check_query = "SELECT count(*) FROM business_admins WHERE username='".$_POST['admin_username']."' AND business_id='".$_SESSION['business_id']."'";
 		$check_result = mysqli_query($conn, $check_query);

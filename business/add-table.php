@@ -5,7 +5,9 @@
 		header('Location: business-login.php');
 	}
 
-	if(htmlspecialchars($_POST['submit']) == "Add Table") //if update table password
+	if(!isset($_POST['table_number']) || !isset($_POST['new_password']) || !isset($_POST['new_password_2'])){
+		header('Location: business-admin.php');
+	} else if(htmlspecialchars($_POST['submit']) == "Add Table") //if update table password
 	{
 		$check_query = "SELECT count(*) FROM tables WHERE business_id='".$_SESSION['business_id']."' AND table_num = '".htmlspecialchars($_POST['table_number'])."'";
 		$check_result = mysqli_query($conn, $check_query);
