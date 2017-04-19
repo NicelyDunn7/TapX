@@ -1,44 +1,48 @@
 .container{
-	min-height: 75%;
+	height: 100%;
 	max-width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.flex-container{
+   height: 100%;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   flex-direction: : column;
+   -webkit-align-content: stretch;
+   align-content: stretch;
+}
+#addBtns{
+	padding-bottom: 30px;
 	display: flex;
   	flex-direction: column;
 	align-items: center;
     justify-content: center;
 }
-#buttonGroups{
+#modifyBtns{
+	padding-bottom: 30px;
 	display: flex;
+  	flex-direction: column;
 	align-items: center;
-	justify-content: center; 
+    justify-content: center;
 }
-.row{
-	max-width: 50%;
-	padding-right: 30px;
-	padding-left: 30px;
-	text-align: center;
+#extraBtns{
+	display: flex;
+  	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+}
+a{
+	text-decoration: none;
 }
 #barName{
 	text-align: center;
 	color: #ffd700;
-
-}
-img{
-	position:absolute;
-	left:0;
-	top:0;
-}
-html, body {
-    margin:0;
-    padding:0;
-    height:100%;
-	background: rgb(125,126,125); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
-}
-.row{
-	padding: 10px;	
 }
 h2{
 	color: white;
