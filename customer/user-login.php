@@ -6,40 +6,23 @@
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>User Login</title>
 	  <link rel="stylesheet" href="../bootstrap.min.css">
+	  <link rel="stylesheet" href="./css/user-login.css">
+	  <link rel="stylesheet" href="./css/background.css" type="text/css">
 	  <script src="../jquery.min.js"></script>
 	  <script src="../bootstrap.min.js"></script>
-		<style type="text/css">
-			.jumbotron{
-				height: 100vh;
-			}
 
-			.jumbotron .container {
- 				max-width: 100%;
-			}
-
-			.row{
-				margin: auto;
-			}
-			h1{
-				text-align: center;
-			}
-
-			.login-group{
-				width: 50%;
-    			margin: 0 auto;
-			}
-
-			#lg_username, #lg_password{
-
-			}
-		</style>
 	</head>
+	<?php 
+		include 'header.html';
+	?>
 	<body>
-		<div class="jumbotron">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-lg-12">
-						<h1>Customer Login Page</h1>
+		<div class="container">
+			<div class="col-xs-12 col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    	<h4 class="panel-title">Login with Table ID and Password</h4>
+				 	</div>
+				 	<div id="login-form" class="panel-body">
 						<form method="POST" action="login-controller.php">
 							<div class="login-group">
 								<input type="hidden" name="business_id" value="<?php echo $_COOKIE['business_id']; ?>">
@@ -56,7 +39,7 @@
 									<input type="password" class="form-control" id="lg_password" name="password" placeholder="Password">
 								</div>
 								<div class="form-group login-group-checkbox">
-									<button type="submit" name="submit">Login</button>
+									<button class="btn" type="submit" name="submit">Login</button>
 									<!-- <input type="checkbox" id="lg_remember" name="lg_remember">
 									<label for="lg_remember">Remember Me</label>-->
 								</div>

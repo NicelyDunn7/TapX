@@ -11,46 +11,21 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<style type="text/css">
-			.container{
-				margin: 0 auto;
-				max-width: 100%;
-			}
-			.row{
-				padding: 5px;
-				text-align:center;
-			}
-			.dropdown-container{
-				text-align: center;
-				padding: 5px;
-				position: relative;
-			}
-			#barName{
-				text-align: center;
-			}
-			.dropdown-menu {
-			  left: 50%;
-			  right: auto;
-			  text-align: center;
-			  width: 10px;
-			  transform: translate(-50%, 0);
-			}
-		</style>
+		<link rel="stylesheet" href="./css/home.css" type="text/css">
+		<link rel="stylesheet" href="./css/background.css" type="text/css">
 	</head>
+	<?php
+		include 'header.html'; 
+	?>
 	<body>
 		<div class="container">
-			<div class="col-xs-12">
-				<div id="barName">
-					<h1>Banner Text Here</h1>
-				</div>
-			</div>
-			<div class="col-xs-12">
+			<div id="form" class="col-xs-12">
 				<form action="./bar-controller.php" method="post" id="bar-controller" >
 					<!-- these two inputs are here to serve as the post targets for this form -->
    					 <input class="span2" id="state_input" name="state_input" type="hidden">
    					 <input class="span2" id="city_input" name="city_input" type="hidden">
 					<div class="dropdown-container">
-						<button type="button" class="btn btn-primary dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
+						<button type="button" class="btn dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="stateDropdown" role="menu">
 							<?php
 								include "./state-controller.php";
@@ -70,7 +45,7 @@
 						</ul>
 					</div>
 					<div class="dropdown-container">
-						<button class="btn btn-primary dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
+						<button class="btn dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
 							<ul class="dropdown-menu" id="cityDropdown" role="menu">
 							 <?php
 								include './city-controller.php';
@@ -83,10 +58,11 @@
 						</ul>
 					</div>
 					<div class="row">
-						<button class="btn btn-primary" type="submit" onclick="myFunction" name="submit" value="bar" id="barMenu">Bar</button>
+						<button class="btn" type="submit" onclick="myFunction" name="submit" value="bar" id="barMenu">Find a Bar</button>
 					</div>
 					<div class="row">
 					    <select id="bars" name="selected_bar">
+					    <option disabled selected value>-Select an Option-</option>
 					    <?php
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
@@ -95,32 +71,18 @@
 								// echo ">";
 
 								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
-								// echo ;
-								//echo $_SESSION['bars'][$k];
-								// echo ;
-								// echo "<option value = ";
-								// echo $_SESSION['addresses'][$k];
-								// echo ">";
-								// echo "<option value = ";
-								// echo $_SESSION['address2'][$k];
-								// echo ">";
-								// echo "<option value = ";
-								// echo $_SESSION['city'][$k];
-								// echo ">";
-								// echo "<option value = ";
-								// echo $_SESSION['state'][$k];
-								// echo ">";
-								// echo "<option value = ";
-								// echo $_SESSION['zip'][$k];
-								// echo ">";
 							}
 						?>
 						</select>
 					</div>
 					<div class="row">
-						<button class="btn btn-default" type="submit" name="submit" value="login" id="go-to-login">Go to Login</button>
+						<button class="btn btn-default" id="goToLogin" type="submit" name="submit" value="login" id="go-to-login">Go to Login</button>
 					</div>
 				</form>
+			</div>
+			<div class="footer">
+		        <a href="https://github.com/dpdunn10/TapX">GitHub |</a>
+		        <a href="../business/business-login.php">Businesses Login Here</a>
 			</div>
 		</div>
 	</body>
@@ -145,24 +107,14 @@
 			});
 
 		});
-		function openNav() {
-		    document.getElementById("mySidenav").style.width = "100px";
-		}
-
-		/* Set the width of the side navigation to 0 */
-		function closeNav() {
-		    document.getElementById("mySidenav").style.width = "0";
-		}
-		// $(document).ready(function(){
-		    // var dropdown = document.getElementById("bars");
-		    // var current_value = dropdown.options[dropdown.selectedIndex].value;
-
-		    // if (current_value == null) {
-		    //     document.getElementById("bars").style.display = "none";
-		    // }
-		    // else{
-		    //     //document.getElementById("bars").style.display = "none";
-		    // }
+		// $( document ).ready(function() {
+		//      if ($("#bars option:selected").text() == "-Select an Option-"){
+		//      	$("form").submit(function(e){
+		// 	        e.preventDefault();
+		// 	        alert("Please Select a Bar in the Dropdown");
+		// 	        $("#bars").attr('style','border:1px solid red');
+		// 	    });
+		//      }
 		// });
 	</script>
 </html>
