@@ -72,26 +72,29 @@
 					var type = msg.type;
 					var name = msg.name;
 					var table_id = msg.table_id;
-					var quantity = msg.quantity;
-					var item = msg.item;
+					if (type == 'summon'){
+						alert(name + " Requested a Server at Table " + table_id);
+						//alert("Server requested at table " + table_id);
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).prepend("<p>"+name+" Requested the Server!</p>");
+					} else if (type == 'close'){
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).append("<p>"+name+" Wants to Close Their Tab</p>");
+						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
+					} else if (type == 'order'){
+						var quantity = msg.quantity;
+						var item = msg.item;
+						document.getElementById(table_id).style.background = "red";
+						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
+						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
+					}
 
 					if(window.console) console.log('Business ID: ' + business_id);
 					if(window.console) console.log('Type: ' + type);
 					if(window.console) console.log('Name: ' + name);
 					if(window.console) console.log('Table ID: ' + table_id);
-					if(window.console) console.log('Quantity: ' + quantity);
-					if(window.console) console.log('Item: ' + item);
-					if(type == 'summon'){
-						alert(name + " Requested a Server at Table " + table_id);
-						//alert("Server requested at table " + table_id);
-						document.getElementById(table_id).style.background = "red";
-						$("#body" + table_id).prepend("<p>Server Requested!</p>");
-					}
-					if(type=="order"){
-						document.getElementById(table_id).style.background = "red";
-						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
-						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
-					}
+					//if(window.console) console.log('Quantity: ' + quantity);
+					//if(window.console) console.log('Item: ' + item);
 				}
 
 				ws.onerror	= function(ev){
