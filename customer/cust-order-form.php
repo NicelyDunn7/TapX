@@ -6,17 +6,17 @@
 		}
 	?>
 	<head>
-		<title>Home Page</title>
+		<title>Order Your Drinks!</title>
 		<meta charset="utf-8">
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="./css/navbar.css" type="text/css">
-	  <link rel="stylesheet" href="../bootstrap.min.css">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="./css/cust-order-form.css" type="text/css">
+	  <link rel="stylesheet" href="./css/background.css" type="text/css">
+	  <link rel="stylesheet" href="./css/cust-order-form.css" type="text/css">
 	  <script src="../jquery.min.js"></script>
 	  <script src="../bootstrap.min.js"></script>
-		<style type="text/css">
-		</style>
-
 		<script>
 			function clickedCloseTab()
 			{
@@ -31,19 +31,13 @@
 
 	</head>
 	<body>
-		<?php
-			include 'navbar.html';
+		<?php 
+			include 'navbar.php';
 		?>
 		<div class="container" id="content">
-			<div class="col-xs-12">
-				<div id="barName">
-					<!-- <h1>Bar Name Here</h1> -->
-				</div>
-			</div>
-			<div class="col-xs-12">
-
-				<!-- Start code for customer order form output -->
-				<form action="cust-order-controller.php" method="post">
+			<!-- Start code for customer order form output -->
+			<form action="cust-order-controller.php" method="post">
+				<div class="flex-form">
 					<?php
 			//echo "<form action='cust-order-controller.php' method='post'>";
 						//start session and include database
@@ -57,7 +51,7 @@
 						//print_r($_SESSION['business_id']);
 
 						//print the name of the bar at the top of the customer order page
-						echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar['business_name']); echo "!</h1></div><br><br>";
+						//echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar['business_name']); echo "!</h1></div>";
 
 						//query to find the right drinks for the current bar
 						$row_query = "SELECT * FROM item_list WHERE business_id='".$_COOKIE['business_id']."'";
@@ -68,8 +62,8 @@
 						$result = mysqli_query($conn, $column_query);
 
 						$drink_quantity = $_POST['drink_quantity'];
-
-						echo "<table style='width:100%' border='5px' >";
+						echo "<div>";
+						echo "<table class='table table-striped'>";
 						echo "<th> " . Drink ." </th>";
 						echo "<th> " . Price ." </th>";
 						echo "<th> " . Quantity ." </th>";
@@ -80,10 +74,9 @@
 									echo "<div class='form-group'>";
 									//output a row here
 										echo "<tr>";
-											echo "<td width = '70%'> "; print_r($column['Field']); echo " </td>";
+											echo "<td class='item' width = '70%'> "; print_r($column['Field']); echo " </td>";
 											echo "<td width = '20%'> "; echo "$"; print_r($row[$column['Field']]); echo "</td>";
 											echo "<td width = '10%'><input class='form-control text-input' type='number' min =0 placeholder = '0' name = '" . $column['Field'] . "' value='". $row['drink_quantity'] . "'> </td>";
-
 										echo "</tr>";
 									echo "</div>";
 								}
@@ -91,27 +84,34 @@
 						}
 						mysqli_close($conn);
 						echo "</table>";
+						echo "</div>"
 
 					?>
-					<input class='btn btn-info btn-lg' type='submit' value='Submit Order'>
-					<a class='btn btn-info btn-lg' href='tab.php'>View Tab</a>
-
-					<!-- close tab after confirm -->
-					<a class='btn btn-danger btn-lg pull-right' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a>
-				</form>
-			</div>
+					<div class="button-flex">
+						<input class='btn btn-default btn-lg' type='submit' value='Submit Order'>
+						<!-- <a class='btn btn-danger btn-lg' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a> -->
+						<!-- <a class='btn btn-info btn-lg' href='tab.php'>View Tab</a> -->
+	                    <a class='btn btn-danger btn-lg' type="button" href='home.php'>Cancel</a>
+					</div>
+				</div>
+			</form>
 		</div>
-		<script type="text/javascript">
+		<script>
 			function openNav() {
-			    document.getElementById("mySidenav").style.width = "100px";
-			    document.getElementById("content").style.marginLeft = "100px";
+			    document.getElementById("mySidenav").style.width = "150px";
 			}
 
 			/* Set the width of the side navigation to 0 */
 			function closeNav() {
 			    document.getElementById("mySidenav").style.width = "0";
-			    document.getElementById("content").style.marginLeft = "0";
 			}
+			$( document ).ready(function() {
+			    $(".item").each(function () {
+			    	var item = $(this).text();
+			    	var replacedItem = item.replace(/_/g, ' ');
+			    	$(this).text(replacedItem);
+				});
+			});	
 		</script>
 	</body>
 </html>

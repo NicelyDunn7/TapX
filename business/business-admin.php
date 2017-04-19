@@ -13,9 +13,10 @@
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="./css/business-admin.css">
-		<link rel="stylesheet" href="../bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/background.css">
 		<script src="../jquery.min.js"></script>
 		<script src="../bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../bootstrap.min.css"></link>
 	</head>
 	<body>
 		<div class="container">
@@ -26,39 +27,33 @@
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
 					$_SESSION['business_name'] = $bar[0];
-					echo "<h1>Welcome " .$_SESSION['business_name']. "<img src='../img/TapXLogo.png' alt='TapX' style='width:150px;height:120px;'></h1>";
+					echo "<h1>Welcome " .$_SESSION['business_name']."</h1>";
 				?>
 			</div>
-			<div class="col-md-12" id="buttonGroup">
-				<div class="row">
-					<a href="business-tables.php" class="btn-lg btn-info" type="button">Tables Page</a>
+			<div class="flex-container">
+				<div class="col-md-12">
+					<div id="addBtns">
+						<a href="business-tables.php" class="btn-lg btn-info" type="button">Tables Page</a>
+						<!-- <h2>Click here to modify your tables!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
+						<!-- <h2>Click here to modify your tables!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
+					
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#uploadMenuModal">Upload PDF Menu</button>
+							
+					</div>
+					<div id="modifyBtns">
+						<!-- <h2>Click here to add your information or update your information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#infoModal">Modify Info</button>
+						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#loginModal">Modify Admin Login</button>
+						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
+						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
+						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#modifyItemsModal">Modify Items</button>
+					</div>
 				</div>
-				<div class="row">
-					<!-- <h2>Click here to modify your tables!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to modify your tables!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your information or update your information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#infoModal">Modify Info</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your login information or update your login information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#loginModal">Modify Admin Login</button>
-				</div>
-				<div class="row">
-					<!-- <h2>Click here to add your login information or update your login information!</h2> -->
-					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
-				</div>
-				<div class="row">
-					<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#modifyItemsModal">Modify Items</button>
-				</div>
-				<div class="row">
-					<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#uploadMenuModal">Upload PDF Menu</button>
-				</div>
+			</div>	
+			<div id="extraBtns">
 				<?php
 					$path = '../menus/' . $_SESSION['business_id'] . '.pdf';
 					if(file_exists($path)){
@@ -69,9 +64,7 @@
 						";
 					}
 				 ?>
-				 <div class="row">
-					 <a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>
-				 </div>
+				<a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>					
 			</div>
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">

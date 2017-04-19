@@ -6,34 +6,33 @@
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Business Login</title>
 		<link rel="stylesheet" href="../bootstrap.min.css">
-		<style type="text/css">
-			.jumbotron{
-				height: 100vh;
-			}
-
-			.jumbotron .container {
- 				max-width: 100%;
-			}
-
-			.row{
-				margin: auto;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="./css/business-login.css">
+		<link rel="stylesheet" href="./css/background.css" type="text/css">
 	</head>
 	<body>
-		<div class="jumbotron">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-md-6">
-						<h1>Business Login Page</h1>
+		<div class="container">
+			<div class="col-xs-12 col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+				    	<h4 class="panel-title">Login with Business ID and Password</h4>
+				 	</div>
+				 	<div id="login-form" class="panel-body">
 						<form method="POST"	action="login-controller.php">
 							<div class="login-group">
-								<input type="text" placeholder="Business ID" name="business_id">
-								<input type="text" placeholder="Username" name="username">
-								<input type="password" placeholder="Password" name="password">
-								<button type="submit" name="submit">Login</button>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Business ID" name="business_id">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="text" placeholder="Username" name="username">
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="password" placeholder="Password" name="password">
+								</div>
+								<div class="form-group">
+									<button class="btn" type="submit" name="submit">Login</button>
+								</div>
 							</div>
-					</form>
+						</form>
 					</div>
 				</div>
 			</div>

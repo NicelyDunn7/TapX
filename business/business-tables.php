@@ -13,6 +13,8 @@
  		<meta http-equiv="X-UA-Compatible" content="IE=edge">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		  <link rel="stylesheet" href="../bootstrap.min.css">
+		  <link rel="stylesheet" href="./css/background.css" type="text/css">
+	  	  <link rel="stylesheet" href="./css/business-tables.css" type="text/css">
 		  <script src="../jquery.min.js"></script>
 		  <script src="../bootstrap.min.js"></script>
 		<script>
@@ -131,61 +133,61 @@
 			  justify-content: center;
 			}
 			.flex-item{
-
 				font-size: 60px;
 				width:100px;
 				height:100px;
 				border:1px solid #000;
 				text-align: center;
 				color: #000000;
-
 			}
 			</style>
 
 
 		</head>
 	<body>
-		<?php
-			include '../dbcreds.php';
-			$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
-					$bar_result = mysqli_query($conn, $bar_query);
-					$bar = mysqli_fetch_array($bar_result);
+		<div class="container">
+			<?php
+				include '../dbcreds.php';
+				$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
+						$bar_result = mysqli_query($conn, $bar_query);
+						$bar = mysqli_fetch_array($bar_result);
 
-					//print the name of the bar at the top of the customer order page
+						//print the name of the bar at the top of the customer order page
 
-				echo "<a href='business-admin.php'><h1>".$_SESSION['business_name']."</h1></a>";
-				$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
-				$table_result = mysqli_query($conn, $table_query);
+					echo "<a href='business-admin.php'><h1>".$_SESSION['business_name']."</h1></a>";
+					$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
+					$table_result = mysqli_query($conn, $table_query);
 
-				echo "<div class='flex-container'>";
-				while($row = mysqli_fetch_array($table_result)){
-					echo "<button type='button' data-toggle='modal' data-target='#modal".$row['table_id']."' class='flex-item' id='". $row['table_id']."'>". $row['table_num']."</button>";
-				}
-				echo "</div>";
-				$table_query2 =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
-				$table_result2 = mysqli_query($conn, $table_query2);
-				echo "<div class='col-md-12'>";
-				while($row = mysqli_fetch_array($table_result2)){
-					echo  "<div id='modal".$row['table_id']."' class='modal fade' role='dialog'>
-						  		<div class='modal-dialog'>
-						  			<div class='modal-content'>
-						  				<div class='modal-header'>
-						  					<h4 class='modal-title'>Table ".$row['table_num']."</h4>
-					      				</div>
-						      			<div id='body".$row['table_id']."' class='modal-body'>
+					echo "<div class='flex-container'>";
+					while($row = mysqli_fetch_array($table_result)){
+						echo "<div class='table-div'><button class = 'table-btn' type='button' data-toggle='modal' data-target='#modal".$row['table_id']."' class='flex-item' id='". $row['table_id']."'>". $row['table_num']."</div></button>";
+					}
+					echo "</div>";
+					$table_query2 =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
+					$table_result2 = mysqli_query($conn, $table_query2);
+					echo "<div class='col-md-12'>";
+					while($row = mysqli_fetch_array($table_result2)){
+						echo  "<div id='modal".$row['table_id']."' class='modal fade' role='dialog'>
+							  		<div class='modal-dialog'>
+							  			<div class='modal-content'>
+							  				<div class='modal-header'>
+							  					<h4 class='modal-title'>Table ".$row['table_num']."</h4>
+						      				</div>
+							      			<div id='body".$row['table_id']."' class='modal-body'>
 
-						      			</div>
-						      			<div class='modal-footer'>
-									        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-									        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
-									    </div>
+							      			</div>
+							      			<div class='modal-footer'>
+										        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+										        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
+										    </div>
+										</div>
 									</div>
-								</div>
-						   </div>";
+							   </div>";
 
-				}
-				echo "</div>";
-				mysqli_close($conn);
-		?>
+					}
+					echo "</div>";
+					mysqli_close($conn);
+			?>	
+		</div>
 	</body>
 </html>
