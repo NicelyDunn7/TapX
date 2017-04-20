@@ -19,7 +19,7 @@
 			// 			if($name == $pname) {
 			// 				echo " for a total of $" . $price;
 			// 			}
-						
+
 			// 		}
 			// 		echo "<br>";
 			// 	}
@@ -32,10 +32,9 @@
 				}
 			}
 			echo "<a href='tab.php'>View Tab</a>";
-			echo "<a href='view-bus-info.php'>View Tab</a>";
+			echo "<a href='view-bus-info.php'>View Business Info</a>";
 			echo "<div class='current-tab'><a href='tab.php'>Total: $" . number_format($totalPrice, 2) . "</a></div>";
 		  ?>
-		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>		  
+		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>
 </div>
-<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>	
-
+<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
