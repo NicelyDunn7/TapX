@@ -37,9 +37,9 @@
 						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
 						<!-- <h2>Click here to modify your tables!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
-					
+
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#uploadMenuModal">Upload PDF Menu</button>
-							
+
 					</div>
 					<div id="modifyBtns">
 						<!-- <h2>Click here to add your information or update your information!</h2> -->
@@ -61,10 +61,11 @@
 								";
 							}
 						 ?>
-						<a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>					
-					</div>					
+						 <br>
+						<a href="logout-controller.php" id="logout" class="btn-lg btn-info" type="button">Logout</a>
+					</div>
 				</div>
-			</div>	
+			</div>
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
 					<div class="modal-dialog">

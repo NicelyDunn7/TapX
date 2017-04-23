@@ -106,7 +106,7 @@
 			});
 
 			function clearTable(table_id){
-				document.getElementById(table_id).style.background = "light-grey";
+				document.getElementById(table_id).style.background = "#D3D3D3";
 				document.getElementById("body" + table_id).innerHTML = "";
 			}
 			$( document ).ready(function() {
@@ -116,7 +116,7 @@
 			    	$(this).text(replacedItem);
 
 				});
-			});	
+			});
 		</script>
 
 		</head>
@@ -154,7 +154,7 @@
 							      			</div>
 							      			<div class='modal-footer'>
 										        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-										        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear Orders</button>
+										        <button type='button' class='btn btn-default' data-dismiss='modal' onclick='clearTable(".$row['table_id'].")'>Clear</button>
 										    </div>
 										</div>
 									</div>

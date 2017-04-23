@@ -17,24 +17,16 @@
 		}
 		else
 		{
-			//echo "admin ".htmlspecialchars($_POST['admin_username'])." doesn't exist";
 
 			if(htmlspecialchars($_POST['new_password_admin']) == htmlspecialchars($_POST['new_password_admin_2']))
 			{
-				//echo "<br> Passwords Match";
 				$salt_prehash = rand();
 				$salt = password_hash($salt_prehash, PASSWORD_BCRYPT);
-				// echo "<br><br> Salt Prehash: ".$salt_prehash;
-				// echo "<br> Salt: ".$salt;
 				$pass_pre_hash = htmlspecialchars($_POST['new_password_admin']).$salt;
 				$pass = password_hash($pass_pre_hash, PASSWORD_BCRYPT);
-				//echo "<br><br> password Prehash: ".$pass_pre_hash;
-				// echo "<br> Password hash: ".$pass;
 				if(password_verify($pass_pre_hash, $pass))
 				{
-					//echo "<br> passed";
 					$add_query = "INSERT INTO `business_admins` (`business_id`, `user_id`, `username`, `password`, `salt`) VALUES (".$_SESSION['business_id'].", DEFAULT, '".htmlspecialchars($_POST['admin_username'])."', '".$pass."', '".$salt."')";
-					//echo "<br> ".$add_query." <br>";
 					$add_result = mysqli_query($conn, $add_query);
 					$add = mysqli_fetch_array($add_result);
 

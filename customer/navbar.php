@@ -31,8 +31,8 @@
 	    	var replacedItem = item.replace(/_/g, ' ');
 	    	$(this).text(replacedItem);
 		});
-	});	    
-</script>    
+	});
+</script>
 <div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="#" id="send-btn">Get Server</a>
@@ -68,7 +68,12 @@
 			}
 			echo "<a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>View Tab</a>";
 			echo "<div class='current-tab'><a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>Total: $" . number_format($totalPrice, 2) . "</a></div>";
-			echo "<a href='view-bus-info.php'>View Menu</a>";
+            $path = '../menus/'.$_COOKIE['business_id'].'.pdf';
+            if(file_exists($path)){
+                echo "<a href='../menus/".$_COOKIE['business_id'].".pdf'>View PDF Menu</a>";
+            } else {
+                echo "<h4>Encourage your establishment to upload a PDF menu!</h4>";
+            }
 		  ?>
 		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>
 </div>
@@ -80,32 +85,32 @@
 							<h4 class="modal-title">View Tab</h4>
 					</div>
 					<div id="tabItems" class="modal-body">
-							<?php 	
+							<?php
 
 							if(isset($_COOKIE['tab']) && isset($_COOKIE['tab_price']))	///TAB IS LINKED TO QUANTITY OF DRINK
 							{
 								echo "Current Tab:<br>";
 										foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
-												
+
 												echo $quantity . "  " . str_replace('_', ' ', $name);
 												foreach(json_decode($_COOKIE['tab_price']) as $pname => $price)
 											{
 													if($name == $pname) {
 															echo " for a total of $" . number_format($price, 2);
 													}
-						
+
 											}
 					echo "<br>";
 									}
 							} else{
-								echo "You haven't ordered anything! Select how many of each food or drink you'd like and submit the order!"; 
+								echo "You haven't ordered anything! Select how many of each food or drink you'd like and submit the order!";
 							}
 							?>
 					</div>
 			    	<div class="modal-footer">
 			        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      	</div>				
+			      	</div>
 			</div>
 	</div>
-</div>	
-<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>	
+</div>
+<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>

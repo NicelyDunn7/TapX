@@ -37,14 +37,14 @@
 	  						event.preventDefault();
 							return false;
 						});
-				}		
+				}
 			}
-						
+
 		</script>
 
 	</head>
 	<body>
-		<?php 
+		<?php
 			include 'navbar.php';
 		?>
 		<div class="container" id="content">
@@ -75,7 +75,7 @@
 						$result = mysqli_query($conn, $column_query);
 
 						$drink_quantity = $_POST['drink_quantity'];
-						echo "<div>";
+						echo "<div style='overflow-y:auto;'>";
 						echo "<table class='table table-striped'>";
 						echo "<th> " . Drink ." </th>";
 						echo "<th> " . Price ." </th>";
@@ -136,7 +136,7 @@
 			    	$(this).text(replacedItem);
 
 				});
-			});	
+			});
 		</script>
 	</body>
 </html>
