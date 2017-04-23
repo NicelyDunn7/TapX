@@ -54,7 +54,7 @@
 			// 			if($name == $pname) {
 			// 				echo " for a total of $" . $price;
 			// 			}
-						
+
 			// 		}
 			// 		echo "<br>";
 			// 	}
@@ -69,9 +69,8 @@
 			echo "<a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>View Tab</a>";
 			echo "<div class='current-tab'><a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>Total: $" . number_format($totalPrice, 2) . "</a></div>";
 			echo "<a href='view-bus-info.php'>View Menu</a>";
-			
 		  ?>
-		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>		  
+		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>
 </div>
 <div id="viewTabModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -110,4 +109,3 @@
 	</div>
 </div>	
 <span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>	
-

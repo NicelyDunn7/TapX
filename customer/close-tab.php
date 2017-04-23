@@ -32,7 +32,7 @@
 						ws.send(JSON.stringify(close));
 						if(window.console) console.log('Connected to Server.');
 						setTimeout(function(){
-							window.location.assign('home.php');
+							window.location.replace('home.php');
 						}, 2000);
 					}
 				});

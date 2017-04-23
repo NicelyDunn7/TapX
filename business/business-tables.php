@@ -73,7 +73,6 @@
 					var name = msg.name;
 					var table_id = msg.table_id;
 					if (type == 'summon'){
-						alert(name + " Requested a Server at Table " + table_id);
 						//alert("Server requested at table " + table_id);
 						document.getElementById(table_id).style.background = "yellow";
 						$("#body" + table_id).prepend("<p>"+name+" Requested the Server!</p>");
@@ -164,7 +163,7 @@
 					}
 					echo "</div>";
 					mysqli_close($conn);
-			?>	
+			?>
 		</div>
 	</body>
 </html>
