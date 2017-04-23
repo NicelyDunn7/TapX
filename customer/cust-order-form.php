@@ -27,6 +27,19 @@
 					return false;
 				}
 			}
+			function submitOrder(){
+				const element = document.querySelector('form');
+				var user_choice = window.confirm('Are you sure you want to submit order?');
+				if(user_choice==true) {
+					} else {
+
+						element.addEventListener('submit', event => {
+	  						event.preventDefault();
+							return false;
+						});
+				}		
+			}
+						
 		</script>
 
 	</head>
@@ -76,7 +89,7 @@
 										echo "<tr>";
 											echo "<td class='item' width = '70%'> "; print_r($column['Field']); echo " </td>";
 											echo "<td width = '20%'> "; echo "$"; print_r($row[$column['Field']]); echo "</td>";
-											echo "<td width = '10%'><input class='form-control text-input' type='number' min =0 placeholder = '0' name = '" . $column['Field'] . "' value='". $row['drink_quantity'] . "'> </td>";
+											echo "<td width = '10%'><input id='quantity' class='form-control text-input' type='number' min =0 placeholder = '0' name = '" . $column['Field'] . "' value='". $row['drink_quantity'] . "'> </td>";
 										echo "</tr>";
 									echo "</div>";
 								}
@@ -88,10 +101,10 @@
 
 					?>
 					<div class="button-flex">
-						<input class='btn btn-default btn-lg' type='submit' value='Submit Order'>
+						<input class='btn btn-default btn-lg' onclick="return submitOrder();" type='submit' value='Submit Order'>
 						<!-- <a class='btn btn-danger btn-lg' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a> -->
 						<!-- <a class='btn btn-info btn-lg' href='tab.php'>View Tab</a> -->
-	                    <a class='btn btn-danger btn-lg' type="button" href='home.php'>Cancel</a>
+	                    <a class='btn btn-danger btn-lg' href="cust-order-form.php" >Cancel</a>
 					</div>
 				</div>
 			</form>
@@ -99,6 +112,17 @@
 		<script>
 			function openNav() {
 			    document.getElementById("mySidenav").style.width = "150px";
+			}
+
+			function cancelOrders(){
+				 $("quantity").each(function () {
+				 });
+				 document.getElementById("#quantity").reset();
+
+				element.addEventListener('submit', event => {
+						event.preventDefault();
+					return false;
+				});
 			}
 
 			/* Set the width of the side navigation to 0 */
@@ -110,6 +134,7 @@
 			    	var item = $(this).text();
 			    	var replacedItem = item.replace(/_/g, ' ');
 			    	$(this).text(replacedItem);
+
 				});
 			});	
 		</script>

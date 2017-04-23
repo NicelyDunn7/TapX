@@ -20,8 +20,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="col-md-12">
-				<div id="barName">
+			<div id="barName">
 				<?php
 					$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
@@ -51,21 +50,21 @@
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
 						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#modifyItemsModal">Modify Items</button>
 					</div>
+					<div id="extraBtns">
+						<?php
+							$path = '../menus/' . $_SESSION['business_id'] . '.pdf';
+							if(file_exists($path)){
+								echo "
+									<div class='row'>
+										<a href='" . $path . "' class='btn-lg btn-info' type='button'>View PDF Menu</a>
+									</div>
+								";
+							}
+						 ?>
+						<a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>					
+					</div>					
 				</div>
 			</div>	
-			<div id="extraBtns">
-				<?php
-					$path = '../menus/' . $_SESSION['business_id'] . '.pdf';
-					if(file_exists($path)){
-						echo "
-							<div class='row'>
-								<a href='" . $path . "' class='btn-lg btn-info' type='button'>View PDF Menu</a>
-							</div>
-						";
-					}
-				 ?>
-				<a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>					
-			</div>
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
 					<div class="modal-dialog">
