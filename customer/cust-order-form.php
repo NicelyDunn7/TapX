@@ -52,7 +52,6 @@
 			<form action="cust-order-controller.php" method="post">
 				<div class="flex-form">
 					<?php
-			//echo "<form action='cust-order-controller.php' method='post'>";
 						//start session and include database
 						include '../dbcreds.php';
 
@@ -60,11 +59,6 @@
 						$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_COOKIE['business_id']."'";
 						$bar_result = mysqli_query($conn, $bar_query);
 						$bar = mysqli_fetch_array($bar_result);
-
-						//print_r($_SESSION['business_id']);
-
-						//print the name of the bar at the top of the customer order page
-						//echo "<div style='text-align:center'><h1>Welcome to "; print_r($bar['business_name']); echo "!</h1></div>";
 
 						//query to find the right drinks for the current bar
 						$row_query = "SELECT * FROM item_list WHERE business_id='".$_COOKIE['business_id']."'";
@@ -102,8 +96,6 @@
 					?>
 					<div class="button-flex">
 						<input class='btn btn-default btn-lg' onclick="return submitOrder();" type='submit' value='Submit Order'>
-						<!-- <a class='btn btn-danger btn-lg' onclick='return clickedCloseTab();' value='Close Tab' id="close-btn" >Close Tab </a> -->
-						<!-- <a class='btn btn-info btn-lg' href='tab.php'>View Tab</a> -->
 	                    <a class='btn btn-danger btn-lg' href="cust-order-form.php" >Cancel</a>
 					</div>
 				</div>

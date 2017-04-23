@@ -12,7 +12,7 @@
 	  <script src="../bootstrap.min.js"></script>
 
 	</head>
-	<?php 
+	<?php
 		include 'header.html';
 	?>
 	<body>
@@ -41,8 +41,6 @@
 								<div class="form-group" style="display: flex;">
 									<button class="btn" type="submit" name="submit">Login</button>
 									<a href="../customer/home.php" class="btn btn-danger">Cancel</a>
-									<!-- <input type="checkbox" id="lg_remember" name="lg_remember">
-									<label for="lg_remember">Remember Me</label>-->
 								</div>
 							</div>
 						</form>

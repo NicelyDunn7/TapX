@@ -1,16 +1,4 @@
-<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'self' ec2-35-167-112-130.us-west-2.compute.amazonaws.com 'unsafe-inline' wss: ws:; connect-src * ec2-35-167-112-130.us-west-2.compute.amazonaws.com wss: ws:; style-src * 'self'; script-src * 'self' 'unsafe-inline'; "/> -->
-<!-- <meta http-equiv="Content-Security-Policy" content="img-src *
-'unsafe-eval' 'unsafe-inline' data:; default-src * ws://* 'unsafe-inline' 'unsafe-eval';
- connect-src * ws://ec2-35-167-112-130.us-west-2.compute.amazonaws.com 'unsafe-eval'
-'unsafe-inline' 'self' "> -->
-<!-- <meta http-equiv="Content-Security-Policy" content="default-src * gap: file: data: blob: 'unsafe-inline' 'unsafe-eval' ws: wss:;"> -->
-<!-- <meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://tapx.duckdns.org ws://tapx.duckdns.org:9998/websocket.php"
-  > -->
-<!-- <meta default-src * 'self' 'unsafe-inline' 'unsafe-eval' 127.0.0.1:* http://35.167.112.130:* wss://35.167.112.130:* ws://35.167.112.130:* https://*.duckdns.org wss://*.duckdns.org:* ws://*.duckdns.org:*;> -->
 <meta http-equiv="Content-Security-Policy" content="default-src * data: blob: 'unsafe-inline' 'unsafe-eval' ws: wss:;">
-
 <?php
 	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
 		header('Location: home.php');

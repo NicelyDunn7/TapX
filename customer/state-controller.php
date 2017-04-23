@@ -27,6 +27,5 @@
 		$_SESSION['states'] = $state;
 		mysqli_stmt_close($stmt);
 		mysqli_close($conn);
-		// header('Location: home.php');
 	}
 ?>

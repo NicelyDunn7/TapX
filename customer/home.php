@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="./css/background.css" type="text/css">
 	</head>
 	<?php
-		include 'header.html'; 
+		include 'header.html';
 	?>
 	<body>
 		<div class="container">
@@ -29,15 +29,9 @@
 						<ul class="dropdown-menu" id="stateDropdown" role="menu">
 							<?php
 								include "./state-controller.php";
-								// print_r($_SESSION['states']);
-								// foreach ($_SESSION['states'] as $s => $v)
 								for($i = 0; $i < $_SESSION['state_count']; $i++)
 								{
 								 	echo "<li onclick=\"$('#state_input').val('" . $_SESSION['states'][$i] . "'); \"><a href='#'>" . $_SESSION['states'][$i] . "</a></li>";
-								 	// echo ;
-								 	// echo ;
-								 	// echo ;
-								 	// echo ;
 								}
 
 							?>
@@ -66,10 +60,6 @@
 					    <?php
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
-								// echo "<option value = ";
-
-								// echo ">";
-
 								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
 							}
 						?>
@@ -89,7 +79,6 @@
 	<script type="text/javascript">
 		$(function(){
     		$("#stateDropdown li a").click(function(){
-				// document.getElementById("cityMenu").disabled = false;
 		    	$("#stateMenu").text($(this).text());
 		    	var selected_state = $("#stateMenu").text();
 
@@ -99,22 +88,11 @@
 		});
 		$(function(){
     		$("#cityDropdown li a").click(function(){
-				// document.getElementById("cityMenu").disabled = false;
 		    	$("#cityMenu").text($(this).text());
 		    	var selected_city = $("#cityMenu").text();
 
 		    	sessionStorage.setItem('selected_city', selected_city);
 			});
-
 		});
-		// $( document ).ready(function() {
-		//      if ($("#bars option:selected").text() == "-Select an Option-"){
-		//      	$("form").submit(function(e){
-		// 	        e.preventDefault();
-		// 	        alert("Please Select a Bar in the Dropdown");
-		// 	        $("#bars").attr('style','border:1px solid red');
-		// 	    });
-		//      }
-		// });
 	</script>
 </html>

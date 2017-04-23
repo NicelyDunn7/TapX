@@ -25,12 +25,6 @@
 			$zip_final = array();
 			mysqli_execute($stmt);
 			mysqli_stmt_bind_result($stmt, $bar, $name, $address, $address2, $city, $state, $zip);
-			//while(mysqli_stmt_fetch($stmt))
-			{
-			//	printf("hi: %s %s %s %s %s %s %s", $bar, $name, $address, $address2, $city, $state, $zip);
-			//	i++;
-			}
-
 
 			while($result = mysqli_stmt_fetch($stmt))
 			{
@@ -43,7 +37,6 @@
 				$zip_final[] = $zip;
 				$i++;
 			}
-			// mysqli_free_result($result);
 			$_SESSION['bar_count'] = $i;
 			$_SESSION['bars'] = $bar_final;
 			$_SESSION['names'] = $name_final;
