@@ -38,8 +38,9 @@
 									<label for="lg_password" class="sr-only">Password</label>
 									<input type="password" class="form-control" id="lg_password" name="password" placeholder="Password">
 								</div>
-								<div class="form-group login-group-checkbox">
+								<div class="form-group" style="display: flex;">
 									<button class="btn" type="submit" name="submit">Login</button>
+									<a href="../customer/home.php" class="btn btn-danger">Cancel</a>
 									<!-- <input type="checkbox" id="lg_remember" name="lg_remember">
 									<label for="lg_remember">Remember Me</label>-->
 								</div>
