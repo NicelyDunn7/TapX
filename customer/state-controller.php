@@ -11,6 +11,8 @@
 	}
 	else
 	{
+		//After querying list of states from database, bind to variables
+		//and send to front end
 		$state = array();
 		mysqli_stmt_execute($stmt);
 		$result = mysqli_stmt_get_result($stmt);

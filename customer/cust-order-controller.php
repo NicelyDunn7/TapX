@@ -3,6 +3,7 @@
 	if(!isset($_COOKIE['business_id']) || !isset($_COOKIE['table_id']) || !isset($_COOKIE['user_name'])){
 		header('Location: home.php');
 	}
+	//Include database credentials, open websocket
 	include '../dbcreds.php';
 	echo "
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
@@ -24,18 +25,22 @@
 	$item_list = array();
 	$price_string = array();
 	$quanity_string = array();
+	//If tab cookie exists, decode it and put it into an array
 	if(isset($_COOKIE['tab']))
 	{
 		foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
 			$quantity_string[$name] += $quantity;
 		}
 	}
+	//If tab price cookie exists, decode it and put it into an array
 	if(isset($_COOKIE['tab_price']))
 	{
 		foreach (json_decode($_COOKIE['tab_price']) as $name => $price) {
 			$price_string[$name] += $price;
 		}
 	}
+	//For each POSTed order, create JSON websocket message and send to server
+	//Append new quantities and prices to price and quantity arrays
 	foreach($_POST as $name => $quantity){
 		if($quantity != ''  && $quantity > 0){
 
@@ -56,8 +61,9 @@
 		}
     }
 
+	//Set cookies with update arrays
     setcookie('tab', json_encode($quantity_string), time()+43200, "/");
-	  setcookie('tab_price', json_encode($price_string), time()+43200, "/");
+	setcookie('tab_price', json_encode($price_string), time()+43200, "/");
 
 
 echo "

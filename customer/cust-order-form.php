@@ -6,10 +6,10 @@
 		}
 	?>
 	<head>
-		<title>Order Your Drinks!</title>
-		<meta charset="utf-8">
- 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 		<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <title>Order Your Drinks!</title>
+	  <meta charset="utf-8">
+ 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="./css/navbar.css" type="text/css">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="./css/cust-order-form.css" type="text/css">
@@ -18,6 +18,7 @@
 	  <script src="../jquery.min.js"></script>
 	  <script src="../bootstrap.min.js"></script>
 		<script>
+			// Close tab function to redirect to the close tab page after confirmation
 			function clickedCloseTab()
 			{
 				var user_choice = window.confirm('Are you sure you want to close your tab?');
@@ -27,6 +28,7 @@
 					return false;
 				}
 			}
+			//Confirmation before submitting order, returns if false, continues if true
 			function submitOrder(){
 				const element = document.querySelector('form');
 				var user_choice = window.confirm('Are you sure you want to submit order?');
@@ -75,6 +77,7 @@
 						echo "<th> " . Price ." </th>";
 						echo "<th> " . Quantity ." </th>";
 
+						//Outputting all items from database into a table
 						while($column = mysqli_fetch_array($result)){
 							if($column['Field'] != 'business_id'){
 								if($row[$column['Field']] != ""){
@@ -105,18 +108,6 @@
 			function openNav() {
 			    document.getElementById("mySidenav").style.width = "150px";
 			}
-
-			function cancelOrders(){
-				 $("quantity").each(function () {
-				 });
-				 document.getElementById("#quantity").reset();
-
-				element.addEventListener('submit', event => {
-						event.preventDefault();
-					return false;
-				});
-			}
-
 			/* Set the width of the side navigation to 0 */
 			function closeNav() {
 			    document.getElementById("mySidenav").style.width = "0";

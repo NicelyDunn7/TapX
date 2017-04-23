@@ -28,6 +28,7 @@
 						<button type="button" class="btn dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="stateDropdown" role="menu">
 							<?php
+								//Calls state-controller to get the list of states from the database
 								include "./state-controller.php";
 								for($i = 0; $i < $_SESSION['state_count']; $i++)
 								{
@@ -42,6 +43,7 @@
 						<button class="btn dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
 							<ul class="dropdown-menu" id="cityDropdown" role="menu">
 							 <?php
+							 	//Calls city-controller to get the list of cities from the database
 								include './city-controller.php';
 								for($i = 0; $i < $_SESSION['city_count']; $i++)
 								{
@@ -58,6 +60,7 @@
 					    <select id="bars" name="selected_bar">
 					    <option disabled selected value>-Select an Option-</option>
 					    <?php
+							//Outputs list of bars from approriate city and state
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
 								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
@@ -77,6 +80,7 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		// Function to output the dropdowns for city and state
 		$(function(){
     		$("#stateDropdown li a").click(function(){
 		    	$("#stateMenu").text($(this).text());

@@ -1,4 +1,5 @@
 <?php
+	//Include database credentials, start session, check that user is logged in
 	include "../dbcreds.php";
 	session_start();
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
@@ -7,6 +8,7 @@
 
 	if(htmlspecialchars($_POST['submit']) == "Update") //if update
 	{
+		//Get login credentials from database
 		$salt_query = "SELECT salt, password FROM business_admins WHERE business_id='".$_SESSION['business_id']."' AND username = '".htmlspecialchars($_POST['username'])."'";
 		$salt_result = mysqli_query($conn, $salt_query);
 		$salt = mysqli_fetch_array($salt_result);
@@ -14,6 +16,7 @@
 		$actualPass = $salt[1];
 		$new_salted_pass = htmlspecialchars($_POST['new_password']).$salt[0];
 
+		//If given password mataches existing password, update with new password
 		if(password_verify($pass, $actualPass))
 		{
 			if(htmlspecialchars($_POST['new_password']) == htmlspecialchars($_POST['new_password_2']))
@@ -31,6 +34,7 @@
 		}
 
 	}
+	//Close database connection, redirect to previous page
 	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 

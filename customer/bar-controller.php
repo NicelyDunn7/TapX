@@ -13,6 +13,7 @@
 		}
 		else
 		{
+			//From city and state, binds parameters of business info
 			$s_state = $_POST['state_input'];
 			$s_city = $_POST['city_input'];
 			mysqli_stmt_bind_param($stmt, "ss", htmlspecialchars($s_state), htmlspecialchars($s_city));
@@ -37,6 +38,7 @@
 				$zip_final[] = $zip;
 				$i++;
 			}
+			//Passes bound variables back to front end
 			$_SESSION['bar_count'] = $i;
 			$_SESSION['bars'] = $bar_final;
 			$_SESSION['names'] = $name_final;
@@ -57,6 +59,7 @@
 		}
 		mysqli_close($conn);
 	}
+	//Set cookie if they clicked submit to login
 	else if($_POST['submit'] == "login")
 	{
 		setcookie('business_id', htmlspecialchars($_POST['selected_bar']), time() + 500, "/");

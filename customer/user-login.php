@@ -15,6 +15,7 @@
 	<?php
 		include 'header.html';
 	?>
+	<!-- Create user login form -->
 	<body>
 		<div class="container">
 			<div class="col-xs-12 col-lg-12">

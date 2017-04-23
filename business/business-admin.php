@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	//Include database credentials, start session, check if logged in
 	include "../dbcreds.php";
 	session_start();
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
@@ -22,6 +23,7 @@
 		<div class="container">
 			<div id="barName">
 				<?php
+					//Query database for business name
 					$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
@@ -29,6 +31,7 @@
 					echo "<h1>Welcome " .$_SESSION['business_name']."</h1>";
 				?>
 			</div>
+			<!-- Add buttons for business administration functions -->
 			<div class="flex-container">
 				<div class="col-md-12">
 					<div id="addBtns">
@@ -60,6 +63,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- Begin modals section -->
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
 					<div class="modal-dialog">

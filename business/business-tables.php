@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	//Start session, check if user is logged in
 	session_start();
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
 		header('Location: business-login.php');
@@ -56,6 +57,7 @@
 						$("#body" + table_id).append("<p>"+name+" ordered "+quantity+" "+item+"</p>");
 					}
 
+					//Output received message to the browser console
 					if(window.console) console.log('Business ID: ' + business_id);
 					if(window.console) console.log('Type: ' + type);
 					if(window.console) console.log('Name: ' + name);
@@ -89,6 +91,7 @@
 	<body>
 		<div class="container">
 			<?php
+				//Query database to get all tables and output to the view
 				include '../dbcreds.php';
 				$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 						$bar_result = mysqli_query($conn, $bar_query);
