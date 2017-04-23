@@ -75,7 +75,7 @@
 					if (type == 'summon'){
 						alert(name + " Requested a Server at Table " + table_id);
 						//alert("Server requested at table " + table_id);
-						document.getElementById(table_id).style.background = "red";
+						document.getElementById(table_id).style.background = "yellow";
 						$("#body" + table_id).prepend("<p>"+name+" Requested the Server!</p>");
 					} else if (type == 'close'){
 						document.getElementById(table_id).style.background = "red";
@@ -84,8 +84,8 @@
 					} else if (type == 'order'){
 						var quantity = msg.quantity;
 						var item = msg.item;
-						document.getElementById(table_id).style.background = "red";
-						$("#body" + table_id).append("<p>"+name+" Ordered "+quantity+" "+item+"</p>");
+						document.getElementById(table_id).style.background = "green";
+						$("#body" + table_id).append("<p>"+name+" ordered "+quantity+" "+item+"</p>");
 						//$("#body" + table_id).append("<p>"+item+": "+quantity+"</p>");
 					}
 
@@ -107,41 +107,18 @@
 			});
 
 			function clearTable(table_id){
-				document.getElementById(table_id).style.background = "white";
+				document.getElementById(table_id).style.background = "light-grey";
 				document.getElementById("body" + table_id).innerHTML = "";
 			}
+			$( document ).ready(function() {
+			    $(".body").each(function () {
+			    	var item = $(this).text();
+			    	var replacedItem = item.replace(/_/g, ' ');
+			    	$(this).text(replacedItem);
+
+				});
+			});	
 		</script>
-
-		<style type="text/css">
-			.container{
-				margin: 0 auto;
-				max-width: 100%;
-			}
-			.row{
-				padding: 5px;
-				text-align:center;
-			}
-			#barName{
-				text-align: center;
-			}
-			.flex-container {
-			  padding: 0;
-			  margin: 0;
-			  list-style: none;
-			  display: flex;
-			  align-items: center;
-			  justify-content: center;
-			}
-			.flex-item{
-				font-size: 60px;
-				width:100px;
-				height:100px;
-				border:1px solid #000;
-				text-align: center;
-				color: #000000;
-			}
-			</style>
-
 
 		</head>
 	<body>
@@ -154,7 +131,7 @@
 
 						//print the name of the bar at the top of the customer order page
 
-					echo "<a href='business-admin.php'><h1>".$_SESSION['business_name']."</h1></a>";
+					echo "<a class='button' href='business-admin.php'>Press Here to Return</a>";
 					$table_query =  "SELECT * FROM tables WHERE business_id='".$_SESSION['business_id']."' ORDER BY table_num";
 					$table_result = mysqli_query($conn, $table_query);
 

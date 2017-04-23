@@ -30,6 +30,7 @@
 								</div>
 								<div class="form-group">
 									<button class="btn" type="submit" name="submit">Login</button>
+									<a href="../customer/home.php" class="btn btn-danger">Cancel</a>
 								</div>
 							</div>
 						</form>
