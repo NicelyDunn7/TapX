@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Login page for businesses -->
 <html>
 	<head>
 		<meta charset="utf-8">

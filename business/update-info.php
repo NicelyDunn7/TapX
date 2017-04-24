@@ -1,4 +1,5 @@
 <?php
+	//Include database credentials, start the session, check that logged in
 	include "../dbcreds.php";
 	session_start();
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
@@ -6,6 +7,7 @@
 	}
 	if(htmlspecialchars($_POST['submit']) == "Update")
 	{
+		//Put POST data into variables
 		$info_query =  "SELECT business_name, address, address2, city, state, zip FROM business WHERE business_id='".$_SESSION['business_id']."'";
 		$info_result = mysqli_query($conn, $info_query);
 		$bar_info = mysqli_fetch_array($info_result);
@@ -16,6 +18,7 @@
 		$state = htmlspecialchars($_POST['state']);
 		$zip = htmlspecialchars($_POST['zip']);
 
+		//Run queries to update information
 		$update_name_query = "UPDATE businesses SET business_name ='".$barName."' WHERE business_id ='".$_SESSION['business_id']."'";
 		$name_result_query = mysqli_query($conn, $update_name_query);
 		$update_address_query = "UPDATE businesses SET address ='".$address."' WHERE business_id ='".$_SESSION['business_id']."'";
@@ -32,6 +35,7 @@
 		$zip_result_query =  mysqli_query($conn, $update_zip_query);
 
 	}
+	//Close database connection and redirect to previous page
 	mysqli_close($conn);
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

@@ -3,6 +3,7 @@
 		header('Location: home.php');
 	}
 
+	//Delete cookies to log user out
 	if (isset($_COOKIE['business_id'])) {
 		setcookie('business_id', "", time()-3600, "/");
 		setcookie('table_id', "", time()-3600, "/");

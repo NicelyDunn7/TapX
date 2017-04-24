@@ -1,7 +1,9 @@
 <?php
+	//Start session, include database credentials
 	session_start();
 	include "../dbcreds.php";
 	$i = 0;
+	//Select city from database
 	$query = "SELECT DISTINCT city FROM businesses ORDER BY city";
 	$stmt = mysqli_stmt_init($conn);
 
@@ -9,6 +11,7 @@
 	{
     	print "Failed to prepare statement\n";
 	}
+	//Passes city list back to front end
 	else
 	{
 		$city = array();
@@ -27,7 +30,5 @@
 		$_SESSION['cities'] = $city;
 		mysqli_stmt_close($stmt);
 		mysqli_close($conn);
-
-		// header('Location: home.php');
 	}
 ?>

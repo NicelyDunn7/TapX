@@ -4,6 +4,7 @@
 		var addr = 'ws://TapX.duckdns.org:9998/websocket.php';
         var ws = new WebSocket(addr);
 
+        //Get server functionlity using websockets
         $('#send-btn').click(function(){
             var msg = {
                 business_id: "<?php echo $_COOKIE['business_id']; ?>",
@@ -31,8 +32,8 @@
 	    	var replacedItem = item.replace(/_/g, ' ');
 	    	$(this).text(replacedItem);
 		});
-	});	    
-</script>    
+	});
+</script>
 <div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		  <a href="#" id="send-btn">Get Server</a>
@@ -42,36 +43,25 @@
 				header('Location: home.php');
 			}
 
-
-			// echo "Current Tab<br><br>";
-
-			// if(isset($_COOKIE['tab']) && isset($_COOKIE['tab_price']))	///TAB IS LINKED TO QUANTITY OF DRINK
-			// {
-			// 	foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
-			// 		echo $quantity . "  " . $name;
-			// 		foreach(json_decode($_COOKIE['tab_price']) as $pname => $price)
-			// 		{
-			// 			if($name == $pname) {
-			// 				echo " for a total of $" . $price;
-			// 			}
-
-			// 		}
-			// 		echo "<br>";
-			// 	}
-			// }
-
+            //Get total price for tab
 			if(isset($_COOKIE['tab_price'])) 	///TAB PRICE IS PRICE OF QUANTITY OF DRINKS
 			{
 				foreach (json_decode($_COOKIE['tab_price']) as $name => $price) {
 					$totalPrice += $price;
 				}
 			}
+            //Output buttons to view tab and to view the itemized tab
 			echo "<a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>View Tab</a>";
 			echo "<div class='current-tab'><a href='#viewTabModal' data-target='#viewTabModal' data-toggle='modal'>Total: $" . number_format($totalPrice, 2) . "</a></div>";
-			echo "<a href='view-bus-info.php'>View Menu</a>";
+            //Output link to pdf menu if it is uploaded
+            $path = '../menus/'.$_COOKIE['business_id'].'.pdf';
+            if(file_exists($path)){
+                echo "<a href='../menus/".$_COOKIE['business_id'].".pdf'>View PDF Menu</a>";
+            }
 		  ?>
 		  <a id="close-tab" onclick='return clickedCloseTab();' value='Close Tab' id="close-btn">Close Tab</a>
 </div>
+<!-- Modals for viewing tab -->
 <div id="viewTabModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 			<div class="modal-content">
@@ -80,32 +70,32 @@
 							<h4 class="modal-title">View Tab</h4>
 					</div>
 					<div id="tabItems" class="modal-body">
-							<?php 	
-
+							<?php
+                            //Getting tab data in modal
 							if(isset($_COOKIE['tab']) && isset($_COOKIE['tab_price']))	///TAB IS LINKED TO QUANTITY OF DRINK
 							{
 								echo "Current Tab:<br>";
 										foreach (json_decode($_COOKIE['tab']) as $name => $quantity) {
-												
+
 												echo $quantity . "  " . str_replace('_', ' ', $name);
 												foreach(json_decode($_COOKIE['tab_price']) as $pname => $price)
 											{
 													if($name == $pname) {
 															echo " for a total of $" . number_format($price, 2);
 													}
-						
+
 											}
 					echo "<br>";
 									}
 							} else{
-								echo "You haven't ordered anything! Select how many of each food or drink you'd like and submit the order!"; 
+								echo "You haven't ordered anything! Select how many of each food or drink you'd like and submit the order!";
 							}
 							?>
 					</div>
 			    	<div class="modal-footer">
 			        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      	</div>				
+			      	</div>
 			</div>
 	</div>
-</div>	
-<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>	
+</div>
+<span id="openbtn" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>

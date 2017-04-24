@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="./css/background.css" type="text/css">
 	</head>
 	<?php
-		include 'header.html'; 
+		include 'header.html';
 	?>
 	<body>
 		<div class="container">
@@ -28,16 +28,11 @@
 						<button type="button" class="btn dropdown-toggle" id="stateMenu" data-toggle="dropdown">State<span class="caret"></span></button>
 						<ul class="dropdown-menu" id="stateDropdown" role="menu">
 							<?php
+								//Calls state-controller to get the list of states from the database
 								include "./state-controller.php";
-								// print_r($_SESSION['states']);
-								// foreach ($_SESSION['states'] as $s => $v)
 								for($i = 0; $i < $_SESSION['state_count']; $i++)
 								{
 								 	echo "<li onclick=\"$('#state_input').val('" . $_SESSION['states'][$i] . "'); \"><a href='#'>" . $_SESSION['states'][$i] . "</a></li>";
-								 	// echo ;
-								 	// echo ;
-								 	// echo ;
-								 	// echo ;
 								}
 
 							?>
@@ -48,6 +43,7 @@
 						<button class="btn dropdown-toggle" type="button" id="cityMenu" data-toggle="dropdown" >City<span class="caret"></span></button>
 							<ul class="dropdown-menu" id="cityDropdown" role="menu">
 							 <?php
+							 	//Calls city-controller to get the list of cities from the database
 								include './city-controller.php';
 								for($i = 0; $i < $_SESSION['city_count']; $i++)
 								{
@@ -64,12 +60,9 @@
 					    <select id="bars" name="selected_bar">
 					    <option disabled selected value>-Select an Option-</option>
 					    <?php
+							//Outputs list of bars from approriate city and state
 							for($k = 0; $k < $_SESSION['bar_count']; $k++)
 							{
-								// echo "<option value = ";
-
-								// echo ">";
-
 								echo "<option value=\"".$_SESSION['bars'][$k]."\">". $_SESSION['names'][$k] . "</option>";
 							}
 						?>
@@ -87,9 +80,9 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		// Function to output the dropdowns for city and state
 		$(function(){
     		$("#stateDropdown li a").click(function(){
-				// document.getElementById("cityMenu").disabled = false;
 		    	$("#stateMenu").text($(this).text());
 		    	var selected_state = $("#stateMenu").text();
 
@@ -99,22 +92,11 @@
 		});
 		$(function(){
     		$("#cityDropdown li a").click(function(){
-				// document.getElementById("cityMenu").disabled = false;
 		    	$("#cityMenu").text($(this).text());
 		    	var selected_city = $("#cityMenu").text();
 
 		    	sessionStorage.setItem('selected_city', selected_city);
 			});
-
 		});
-		// $( document ).ready(function() {
-		//      if ($("#bars option:selected").text() == "-Select an Option-"){
-		//      	$("form").submit(function(e){
-		// 	        e.preventDefault();
-		// 	        alert("Please Select a Bar in the Dropdown");
-		// 	        $("#bars").attr('style','border:1px solid red');
-		// 	    });
-		//      }
-		// });
 	</script>
 </html>

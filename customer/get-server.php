@@ -13,20 +13,6 @@
 				var addr = 'ws://TapX.duckdns.org:9998/websocket.php';
                 var ws = new WebSocket(addr);
 
-                //Open connection, send message to notify server a customer has connected
-                // ws.onopen = function(ev) { // connection is open
-                //     var msg = {
-                //         business_id: "<?php echo $_COOKIE['business_id']; ?>",
-                //         type: "customer",
-                //         name: "<?php echo $_COOKIE['user_name']; ?>",
-                //         table_id: "NULL",
-                //         quantity: "NULL",
-                //         item: "NULL"
-                //     }
-                //     ws.send(JSON.stringify(msg));
-                //     if(window.console) console.log('Connected to Server.');
-            	// }
-
                 //Send message to server notifying customers wish to summon the waiter/waitress
                 $('#send-btn').click(function(){
                     var msg = {

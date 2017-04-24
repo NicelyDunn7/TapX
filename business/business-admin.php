@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+	//Include database credentials, start session, check if logged in
 	include "../dbcreds.php";
 	session_start();
 	if(!isset($_SESSION['business_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])){
@@ -22,6 +23,7 @@
 		<div class="container">
 			<div id="barName">
 				<?php
+					//Query database for business name
 					$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 					$bar_result = mysqli_query($conn, $bar_query);
 					$bar = mysqli_fetch_array($bar_result);
@@ -29,24 +31,19 @@
 					echo "<h1>Welcome " .$_SESSION['business_name']."</h1>";
 				?>
 			</div>
+			<!-- Add buttons for business administration functions -->
 			<div class="flex-container">
 				<div class="col-md-12">
 					<div id="addBtns">
 						<a href="business-tables.php" class="btn-lg btn-info" type="button">Tables Page</a>
-						<!-- <h2>Click here to modify your tables!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#addLoginModal">Add Admin Login</button>
-						<!-- <h2>Click here to modify your tables!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#addTableModal">Add A Table</button>
-					
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#uploadMenuModal">Upload PDF Menu</button>
-							
+
 					</div>
 					<div id="modifyBtns">
-						<!-- <h2>Click here to add your information or update your information!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#infoModal">Modify Info</button>
-						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#loginModal">Modify Admin Login</button>
-						<!-- <h2>Click here to add your login information or update your login information!</h2> -->
 						<button class="btn-lg btn-info" data-toggle="modal" type="button" data-target="#modifyTableModal">Modify Tables</button>
 						<button class="btn-lg btn-info" data-toggle="modal" type="button"  data-target="#modifyItemsModal">Modify Items</button>
 					</div>
@@ -61,10 +58,12 @@
 								";
 							}
 						 ?>
-						<a href="logout-controller.php" class="btn-lg btn-info" type="button">Logout</a>					
-					</div>					
+						 <br>
+						<a href="logout-controller.php" id="logout" class="btn-lg btn-info" type="button">Logout</a>
+					</div>
 				</div>
-			</div>	
+			</div>
+			<!-- Begin modals section -->
 			<div class="col-md-12">
 				<div id="modifyTableModal" class="modal fade" role="dialog">
 					<div class="modal-dialog">
@@ -77,8 +76,6 @@
 					      <div class="modal-body">
 					      <form action="update-tables.php" method="POST">
 					        <?php
-					        	//pulled lukes code from the business-tables page to draw the tables.
-								// $_SESSION['business_id'] = 1; //*********************** CHANGE THIS WHEN WE GET BAR LOGIN WORKING!!!! ****************************
 								$bar_query = "SELECT business_name FROM businesses WHERE business_id='".$_SESSION['business_id']."'";
 										$bar_result = mysqli_query($conn, $bar_query);
 										$bar = mysqli_fetch_array($bar_result);
